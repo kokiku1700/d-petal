@@ -1,5 +1,8 @@
 
-
+// AuthShell은 없어도 되는 컴포넌트지만 
+// 역할을 좀 더 나누기 위해 만들었다.
+// AuthShell이 없으면 page.tsx 내부 코드가 
+// 길어질 가능성이 있기 때문이다.
 export default function AuthShell ({
     mode,
     children,
@@ -31,5 +34,5 @@ export default function AuthShell ({
                 {right}
             </div>
 		</div>
-    )
-}
+    );
+};

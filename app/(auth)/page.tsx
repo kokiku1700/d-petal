@@ -11,6 +11,9 @@ export default function Home () {
 
 	// 컴포넌트를 선언할 때 < /> 형태가 아닌
 	// <> </> 이 형태로 받게 되는 경우 사이에 있는 컴포넌트는 props 형식이 된다. 
+	// 코드의 가독성을 높여주고 AuthShell의 내부 코드 수정 없이 
+	// 화면을 변화시킬 수 있다. 
+	// 또한 역할 분담을 확실히 해준다.
 	return (
 		<AuthShell mode={mode}>
 			<LeftPanel mode={mode} />

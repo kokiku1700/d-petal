@@ -26,14 +26,15 @@ export default function SignInForm ({ onSwitch }: Props) {
             flex flex-col justify-center items-center gap-10
             text-gray-800
             bg-gradient-to-b from-white to-[#fff6fb]">
-            <h1 
-                className="mb-5 text-5xl text-[#3b2f4a]">Sign In</h1>
+            <h1 className="mb-5 text-5xl text-[#3b2f4a]">
+                Sign In
+            </h1>
             <form 
                 className="
                     w-[60%] 
                     flex flex-col justify-center items-center gap-6">
-                    <Input placeholder="이메일"/>
-                    <Input placeholder="비밀번호"/>
+                    <Input type="email" placeholder="이메일" variant="signin"/>
+                    <Input type="password" placeholder="비밀번호" variant="signin"/>
                 <Button object="로그인" />
             </form>
             <div className="flex gap-5">
