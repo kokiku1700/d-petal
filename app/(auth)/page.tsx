@@ -1,26 +1,7 @@
-"use client"
+import AuthEntry from "./_components/AuthEntry";
 
-import { useState } from "react";
-import AuthShell from "./_components/AuthShell";
-import LeftPanel from "./_components/LeftPanel";
-import SignInForm from "./_components/SignInForm";
-import SignUpForm from "./_components/SignUpForm";
-
-export default function Home () {
-	const [mode, setMode] = useState<"signin" | "signup">("signin");
-
-	// 컴포넌트를 선언할 때 < /> 형태가 아닌
-	// <> </> 이 형태로 받게 되는 경우 사이에 있는 컴포넌트는 props 형식이 된다. 
-	// 코드의 가독성을 높여주고 AuthShell의 내부 코드 수정 없이 
-	// 화면을 변화시킬 수 있다. 
-	// 또한 역할 분담을 확실히 해준다.
+export default async function Home () {
 	return (
-		<AuthShell mode={mode}>
-			<LeftPanel mode={mode} />
-			{mode === "signin" ?
-				<SignInForm onSwitch={() => setMode("signup")} /> :
-				<SignUpForm onSwitch={() => setMode("signin")} />
-			}	
-		</AuthShell>
+		<AuthEntry />
 	);
 }

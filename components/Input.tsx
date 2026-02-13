@@ -1,14 +1,17 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, FocusEventHandler } from "react";
 
 type Variant = "signin" | "signup";
 
 type Props = {
+    name: string;
     type: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
+    onBlur?: FocusEventHandler<HTMLInputElement>;
     placeholder?: string;
     readonly?: boolean;
     variant: Variant;
+    maxLength: number;
 };
 
 const styles = {
@@ -16,14 +19,16 @@ const styles = {
     signup: "rounded-lg py-1 px-2"
 } as const;
 
-export default function Input ({ type, value, onChange, placeholder, readonly, variant }: Props) {
+export default function Input ({ name, type, value, onChange, onBlur, placeholder, readonly, variant, maxLength }: Props) {
 
 
     return (
         <input
+            name={name}
             type={type}
             value={value}
             onChange={onChange}
+            onBlur={onBlur}
             className={`
             w-full
             text-xl
@@ -38,6 +43,8 @@ export default function Input ({ type, value, onChange, placeholder, readonly, v
             [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border p-2`}
             placeholder={placeholder}
             readOnly={readonly}
+            autoComplete="off"
+            maxLength={maxLength}
         />
     )
 }

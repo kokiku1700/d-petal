@@ -35,7 +35,7 @@ export default function SignInForm ({ onSwitch }: Props) {
                     flex flex-col justify-center items-center gap-6">
                     <Input type="email" placeholder="이메일" variant="signin"/>
                     <Input type="password" placeholder="비밀번호" variant="signin"/>
-                <Button object="로그인" />
+                <Button object="로그인" variant="submit" />
             </form>
             <div className="flex gap-5">
                 {socialIcons.map((icon, i) => (

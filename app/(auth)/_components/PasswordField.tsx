@@ -15,7 +15,7 @@ export default function PasswordField ({ value, onChange }: Props) {
     return (
         <div className="w-full flex gap-5">
             <div className="w-full">
-                <label className="text-lg font-semibold">
+                <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>
                     비밀번호
                 </label>
@@ -25,7 +25,7 @@ export default function PasswordField ({ value, onChange }: Props) {
                     variant="signup"/>
             </div>
             <div className="w-full">
-                <label className="text-lg font-semibold">
+                <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>
                     비밀번호 확인
                 </label>

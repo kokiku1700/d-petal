@@ -10,7 +10,7 @@ export default function BirthAndGenderField () {
     return (
         <div className="w-full flex gap-5">
             <div className="w-full">
-                <label className="text-lg font-semibold">
+                <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>
                     생년월일
                 </label>
@@ -35,7 +35,7 @@ export default function BirthAndGenderField () {
                 </div>
             </div>
             <div className="w-full">
-                <label className="text-lg font-semibold">
+                <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>
                     성별
                 </label>

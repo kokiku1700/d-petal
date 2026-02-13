@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useEffect, useMemo, useState } from "react";
 
@@ -13,9 +14,14 @@ const CUSTOM = "직접입력" as const;
 type PresetDomain = typeof PRESET_DOMAINS[number];
 type DomainOption = PresetDomain | typeof CUSTOM;
 
+type Status = "idle" | "invalid" | "duplicate" | "available";
+
 type Props = {
     value: string;
     onChange: (email: string) => void;
+    onClick: () => void;
+    status: Status;
+    message: string;
 };
 
 // 타입스크립트의 타입 가드다.
@@ -35,7 +41,7 @@ function splitEmail ( value: string ) {
 // 도메인은 select로 선택하거나 직접입력할 수 있다.
 // 선택한 경우는 도메인input은 disabled가 된다.
 // 직접선택을 선택한 경우 도메인 input에 직접 도메인을 작성할 수 있다. 
-export default function EmailField ({value, onChange}: Props) {
+export default function EmailField ({value, onChange, onClick, status, message}: Props) {
     // 받은 이메일을 아이디와 도메인으로 분리
     const initial = splitEmail(value);
     // 분리한 아이디를 저장
@@ -70,42 +76,58 @@ export default function EmailField ({value, onChange}: Props) {
 
     return (
         <div className="w-full">
-            <label className="text-lg font-semibold">
+            <label className="text-lg text-[#3b2f4a] font-semibold">
                 <span className="text-red-500 mx-1">*</span>
                 이메일
             </label>
             <div className="flex items-center gap-1">
-                <Input 
-                    type="text"
-                    value={id}
-                    onChange={e => setId(e.target.value)}
-                    variant="signup"/>
+                <div className="flex flex-[8] items-center gap-1">
+                    <Input 
+                        name="id"
+                        type="text"
+                        value={id}
+                        onChange={e => setId(e.target.value)}
+                        variant="signup"
+                        maxLength={20}/>
 
-                <span className="text-gray-400">@</span>
+                    <span className="text-gray-400">@</span>
 
-                <Input
-                    type="text"
-                    value={domain}
-                    onChange={e => setDomain(e.target.value)}
-                    readonly={domainReadOnly}
-                    variant="signup"/>
-                
-                <select 
-                    value={domainOption}
-                    onChange={e => setDomainOption(e.target.value as DomainOption)}
-                    className="
-                        py-1 px-2 
-                        text-lg
-                        border rounded-lg 
-                        focus:ring
-                        focus:ring-[#e5c9dd]
-                        focus:border-[#e5c9dd]">
-                    <option value={CUSTOM}>직접입력</option>
-                    {PRESET_DOMAINS.map(d => (
-                        <option key={d} value={d} className="focus:bg-gray-200">{d}</option>
-                    ))}
-                </select>
+                    <Input
+                        name="domain"
+                        type="text"
+                        value={domain}
+                        onChange={e => setDomain(e.target.value)}
+                        readonly={domainReadOnly}
+                        variant="signup"
+                        maxLength={99}/>
+                    
+                    <select 
+                        value={domainOption}
+                        onChange={e => setDomainOption(e.target.value as DomainOption)}
+                        className="
+                            py-1 px-2 
+                            text-lg
+                            border rounded-lg 
+                            focus:ring
+                            focus:ring-[#e5c9dd]
+                            focus:border-[#e5c9dd]">
+                        <option value={CUSTOM}>직접입력</option>
+                        {PRESET_DOMAINS.map(d => (
+                            <option key={d} value={d} className="focus:bg-gray-200">{d}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="flex-[2]">
+                    <Button type="button" object="중복확인" variant="duplication" onClick={onClick} />
+                </div>
             </div>
+            <p
+                className={`
+                    min-h-[1.5rem] ml-1 mt-1
+                    transition-opacity
+                    ${status === "available" ? "text-green-500" : "text-red-500"}`}>
+                {message}
+            </p>
         </div>
     )
 };
