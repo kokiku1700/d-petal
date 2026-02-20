@@ -18,7 +18,7 @@ const fieldSchema = {
     sex: signUpSchema.shape.sex,
 } as const;
 
-type FieldKey = keyof typeof fieldSchema;
+type FieldKey = keyof typeof fieldSchema | "passwordCheck";
 
 type Status = "idle" | "invalid" | "duplicate" | "available";
 
@@ -34,20 +34,26 @@ export default function SignUpForm ({onSwitch}: Props) {
     const [email, setEmail] = useState("");
     const [emailStatus, setEmailStatus] = useState<Status>("idle");
     const [password, setPassword] = useState("");
+    const [passwordStatus, setPasswordStatus] = useState<Status>("idle");
+    const [passwordCheck, setPasswordCheck] = useState("");
+    const [passwordCheckStatus, setPasswordCheckStatus] = useState<Status>("idle");
+    const [birth, setBirth] = useState("");
+    const [gender, setGender] = useState<"남" | "여">("남");
 
     const [errorMessage, setErrorMessage] = useState({
         name: "",
         nickname: "",
         email: "",
         password: "",
+        passwordCheck: "",
         birth: "",
     });
 
     useEffect(() => {
         setErrorMessage(prev => ({
-                ...prev,
-                "nickname": "",
-            }));
+            ...prev,
+            "nickname": "",
+        }));
         setNicknameStatus("idle");
     }, [nickname]);
 
@@ -59,6 +65,24 @@ export default function SignUpForm ({onSwitch}: Props) {
         setEmailStatus("idle");
     }, [email]);
 
+    useEffect(() => {
+        setErrorMessage(prev => ({
+            ...prev,
+            "password": "",
+            "passwordCheck": ""
+        }));
+        setPasswordStatus("idle");
+        setPasswordCheckStatus("idle")
+    }, [password]);
+
+    useEffect(() => {
+        setErrorMessage(prev => ({
+            ...prev,
+            "passwordCheck": ""
+        }));
+        setPasswordCheckStatus("idle")
+    }, [passwordCheck]);
+
     // zod를 활용해 값을 검증한다.
     const validateField = ( schema: z.ZodTypeAny, value: unknown ) => {
         const result = schema.safeParse(value);
@@ -68,12 +92,37 @@ export default function SignUpForm ({onSwitch}: Props) {
 
     // focus out시 입력값을 검증해서 에러메세지를 여부를 판단
     const onBlur = ( field: FieldKey, value: unknown ) => { 
-        const msg = validateField(fieldSchema[field], value);
-        
-        setErrorMessage(prev => ({
-            ...prev,
-            [field]: msg,
-        }));
+        if ( field === "passwordCheck" ) {
+            if ( password === passwordCheck && passwordCheck !== "" ) {
+                setErrorMessage(prev => ({
+                    ...prev,
+                    [field]: "비밀번호가 일치합니다.",
+                }));
+                setPasswordCheckStatus("available");
+            } else {
+                setErrorMessage(prev => ({
+                    ...prev,
+                    [field]: "비밀번호를 확인해주세요.",
+                }));
+                setPasswordCheckStatus("invalid");
+            };
+        } else {
+            const msg = validateField(fieldSchema[field], value);
+
+            if ( msg === null && field === "password" ) {
+                setPasswordStatus("available");
+                setErrorMessage(prev => ({
+                    ...prev,
+                    "password": "사용 가능합니다.",
+                }));
+                return;
+            };
+
+            setErrorMessage(prev => ({
+                ...prev,
+                [field]: msg,
+            }));
+        };     
     };
 
     // 닉네임 중복 검사
@@ -87,7 +136,7 @@ export default function SignUpForm ({onSwitch}: Props) {
             }));
             setNicknameStatus("invalid");
             return;
-        }
+        };
 
         const res = await fetch(`/api/nickname-check?nickname=${encodeURIComponent(nickname)}`);
 
@@ -98,7 +147,7 @@ export default function SignUpForm ({onSwitch}: Props) {
             }));
             setNicknameStatus("invalid");
             return;
-        }
+        };
 
         const data = await res.json();
 
@@ -160,21 +209,22 @@ export default function SignUpForm ({onSwitch}: Props) {
 
     // 회원 가입 폼에 입력한 값 최종 확인 및 서버에 제출
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        
-        const result = signUpSchema.safeParse({
-            name: name,
-            nickname: nickname,
-            provider: provider,
-            email: email,    
-            password: password,
-        });
-        
-        if ( !result.success ) {
-            alert("실패");
-            console.log(result)
-        };
+        e.preventDefault();
 
+        console.log(name, nickname, email, password, birth, gender);
+
+        // const result = signUpSchema.safeParse({
+        //     name: name,
+        //     nickname: nickname,
+        //     provider: provider,
+        //     email: email,    
+        //     password: password,
+        // });
+        
+        // if ( !result.success ) {
+        //     alert("실패");
+        //     console.log(result)
+        // };
     };
 
     return (
@@ -249,11 +299,25 @@ export default function SignUpForm ({onSwitch}: Props) {
                         </p>
                     </div>
                 </div> 
-                <EmailField value={email} onChange={setEmail} onClick={emailCheck} status={emailStatus} message={errorMessage.email} />
-                <PasswordField value={password} onChange={setPassword} />
-                <BirthAndGenderField />
+                <EmailField 
+                    value={email} 
+                    onChange={setEmail} onClick={emailCheck} 
+                    status={emailStatus} message={errorMessage.email} />
+                <PasswordField 
+                    password={password} passwordCheck={passwordCheck}
+                    onChangePw={setPassword} 
+                    onChangePwCheck={setPasswordCheck} 
+                    onBlurPw={() => onBlur("password", password)} 
+                    onBlurPwCheck={() => onBlur("passwordCheck", passwordCheck)}
+                    errMsgPw={errorMessage.password}
+                    errMsgPwCheck={errorMessage.passwordCheck}
+                    passwordStatus={passwordStatus}
+                    passwordCheckStatus={passwordCheckStatus} />
+                <BirthAndGenderField
+                    birthValue={birth} onChangeBirth={setBirth}
+                    genderValue={gender} onChangeGender={setGender} />
             </div>
-            <div className="w-[70%] absolute bottom-15">
+            <div className="w-[70%] absolute bottom-10">
                 <Button type="submit" object="회원가입" variant="submit" />
             </div>
         </form>

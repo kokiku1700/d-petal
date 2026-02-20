@@ -11,7 +11,7 @@ type Props = {
     placeholder?: string;
     readonly?: boolean;
     variant: Variant;
-    maxLength: number;
+    maxLength?: number;
 };
 
 const styles = {
@@ -24,14 +24,11 @@ export default function Input ({ name, type, value, onChange, onBlur, placeholde
 
     return (
         <input
-            name={name}
-            type={type}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
+            name={name} type={type} value={value}
+            onChange={onChange} onBlur={onBlur}
             className={`
             w-full
-            text-xl
+            text-xl ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
             ${styles[variant]}
             border-1 border-[#3b2f4a]
             focus:outline-none
