@@ -8,6 +8,7 @@ import kakao from "@/public/icons/kakaotalk.svg";
 import naver from "@/public/icons/naver.svg";
 import github from "@/public/icons/github.svg";
 import Link from "next/link";
+import { useState } from "react";
 
 type Props = {
     onSwitch: () => void;
@@ -20,6 +21,27 @@ export default function SignInForm ({ onSwitch }: Props) {
 		{src: naver, alt:"naver 로그인", provider:"naver"},
 		{src: github, alt:"github 로그인", provider:"github"},
 	];
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const res = await fetch("/api/sign-in", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                email,
+                password
+            }),
+        });
+
+        if ( res.ok ) {
+            alert("성공")
+        }
+    };
+
     return (
         <div className="
             w-full h-full
@@ -30,12 +52,19 @@ export default function SignInForm ({ onSwitch }: Props) {
                 Sign In
             </h1>
             <form 
+                onSubmit={onSubmit}
                 className="
                     w-[60%] 
                     flex flex-col justify-center items-center gap-6">
-                    <Input type="email" placeholder="이메일" variant="signin"/>
-                    <Input type="password" placeholder="비밀번호" variant="signin"/>
-                <Button object="로그인" variant="submit" />
+                    <Input 
+                        name="email" value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        type="email" placeholder="이메일" variant="signin"/>
+                    <Input 
+                        name="password" type="password" value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholder="비밀번호" variant="signin"/>
+                <Button type="submit" object="로그인" variant="submit" />
             </form>
             <div className="flex gap-5">
                 {socialIcons.map((icon, i) => (

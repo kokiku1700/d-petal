@@ -8,6 +8,7 @@ import Image from "next/image";
 import out from "@/public/out.png";
 import { signUpSchema } from "@/schemas/auth/sign-up.schema";
 import z from "zod";
+import { useRouter } from "next/navigation";
 
 const fieldSchema = {
     name: signUpSchema.shape.name,
@@ -39,7 +40,6 @@ export default function SignUpForm ({onSwitch}: Props) {
     const [passwordCheckStatus, setPasswordCheckStatus] = useState<Status>("idle");
     const [birth, setBirth] = useState("");
     const [gender, setGender] = useState<"남" | "여">("남");
-
     const [errorMessage, setErrorMessage] = useState({
         name: "",
         nickname: "",
@@ -48,6 +48,7 @@ export default function SignUpForm ({onSwitch}: Props) {
         passwordCheck: "",
         birth: "",
     });
+    const router = useRouter();
 
     useEffect(() => {
         setErrorMessage(prev => ({
@@ -143,7 +144,7 @@ export default function SignUpForm ({onSwitch}: Props) {
         if ( !res.ok ) {
             setErrorMessage(prev => ({
                 ...prev,
-                email: "닉네임 확인 중 오류가 발생했습니다.",
+                nickname: "닉네임 확인 중 오류가 발생했습니다.",
             }));
             setNicknameStatus("invalid");
             return;
@@ -208,23 +209,28 @@ export default function SignUpForm ({onSwitch}: Props) {
     };
 
     // 회원 가입 폼에 입력한 값 최종 확인 및 서버에 제출
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log(name, nickname, email, password, birth, gender);
+        const res = await fetch("/api/sign-up", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name,
+                nickname,
+                provider: "local",
+                email,
+                password,
+                birth,
+                sex: gender,
+            }),
+        });
 
-        // const result = signUpSchema.safeParse({
-        //     name: name,
-        //     nickname: nickname,
-        //     provider: provider,
-        //     email: email,    
-        //     password: password,
-        // });
+        if ( res.ok ) {
+            alert("회원가입이 완료되었습니다. 다시 로그인해주세요.")
+            router.refresh();
+        }
         
-        // if ( !result.success ) {
-        //     alert("실패");
-        //     console.log(result)
-        // };
     };
 
     return (

@@ -32,15 +32,61 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
         console.log(birth)
     }, [birth]);
 
+    const onChangeMaxMin = ( e: React.FocusEvent<HTMLInputElement> ) => {
+        const { name, value } = e.target;
+        const nowYear = new Date().getFullYear();
+
+        if ( name === "year" ) {
+            if ( Number(value) > nowYear ) {
+                setYyyymmdd(prev => ({...prev, [name]: nowYear.toString()}));
+            } else if ( Number(value) < 0 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "1900"}));
+            } else {
+                setYyyymmdd(prev => ({...prev, [name]: value}));
+            };
+        } else if ( name === "month" ) {
+            if ( Number(value) < 0 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "1"}));
+            } else if ( Number(value) > 12 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "12"}));
+            } else {
+                setYyyymmdd(prev => ({...prev, [name]: value}));
+            }
+        } else if ( name === "date" ) {
+            const lastDay = 
+                yyyymmdd.year !== "" && yyyymmdd.month !== "" 
+                ? new Date(Number(yyyymmdd.year), Number(yyyymmdd.month), 0).getDate() 
+                : 31;
+            if ( Number(value) > lastDay ) {
+                console.log(lastDay)
+                setYyyymmdd(prev => ({...prev, [name]: lastDay.toString()}));
+            } else if ( Number(value) < 0 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "1"}));
+            } else {
+                setYyyymmdd(prev => ({...prev, [name]: value}));
+            }
+        };
+    };
+
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         const s = value.trim();
+ 
+        if ( name === "year" ) {
+            if ( Number(value) === 0 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "1900"}));
+            }
+        } else {
+            if ( Number(value) === 0 ) {
+                setYyyymmdd(prev => ({...prev, [name]: "01"}));
+            }
 
-        if ( s.length === 1 ) {
-            setYyyymmdd(prev => ({
-                ...prev, 
-                [name]: s.padStart(2, "0"),
-            }));
+            if ( s.length === 1 ) {
+                setYyyymmdd(prev => ({
+                    ...prev, 
+                    [name]: s.padStart(2, "0"),
+                }));
+            };
         };
     };
 
@@ -60,14 +106,15 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
                     <Input 
                         name="year"
                         type="number" value={yyyymmdd.year} 
-                        onChange={e => setYyyymmdd(prev => ({...prev, [e.target.name]: e.target.value}))} 
+                        onChange={onChangeMaxMin} 
+                        onBlur={onBlur}
                         variant="signup"
                         placeholder={new Date().getFullYear().toString()} />
                     <span className="text-gray-400">/</span>
                     <Input 
                         name="month"
                         type="number" value={yyyymmdd.month} 
-                        onChange={e => setYyyymmdd(prev => ({...prev, [e.target.name]: e.target.value}))}  
+                        onChange={onChangeMaxMin}  
                         onBlur={onBlur}
                         variant="signup"
                         placeholder={(new Date().getMonth() + 1).toString()} />
@@ -75,7 +122,7 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
                     <Input 
                         name="date"
                         type="number" value={yyyymmdd.date} 
-                        onChange={e => setYyyymmdd(prev => ({...prev, [e.target.name]: e.target.value}))} 
+                        onChange={onChangeMaxMin} 
                         onBlur={onBlur}
                         variant="signup"
                         placeholder={new Date().getDate().toString()} />
