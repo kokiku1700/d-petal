@@ -9,6 +9,7 @@ import naver from "@/public/icons/naver.svg";
 import github from "@/public/icons/github.svg";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
     onSwitch: () => void;
@@ -23,7 +24,7 @@ export default function SignInForm ({ onSwitch }: Props) {
 	];
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const router = useRouter();
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,7 +39,7 @@ export default function SignInForm ({ onSwitch }: Props) {
         });
 
         if ( res.ok ) {
-            alert("성공")
+            router.replace("/app");
         }
     };
 
