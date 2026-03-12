@@ -10,6 +10,7 @@ import github from "@/public/icons/github.svg";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
     onSwitch: () => void;
@@ -25,6 +26,7 @@ export default function SignInForm ({ onSwitch }: Props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
+    const queryClient = useQueryClient();
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,7 +41,9 @@ export default function SignInForm ({ onSwitch }: Props) {
         });
 
         if ( res.ok ) {
+            await queryClient.invalidateQueries({ queryKey: ["me"]});
             router.replace("/app");
+            router.refresh();
         }
     };
 
@@ -65,7 +69,9 @@ export default function SignInForm ({ onSwitch }: Props) {
                         name="password" type="password" value={password}
                         onChange={e => setPassword(e.target.value)}
                         placeholder="비밀번호" variant="signin"/>
-                <Button type="submit" object="로그인" variant="submit" />
+                <Button 
+                    type="submit" object="로그인" variant="submit"
+                    style={{backgroundColor: "#f3dff0"}} />
             </form>
             <div className="flex gap-5">
                 {socialIcons.map((icon, i) => (
@@ -93,7 +99,7 @@ export default function SignInForm ({ onSwitch }: Props) {
                 <p>
                     로그인이 되지 않나요?
                     <Link 
-                        href="/find_password" 
+                        href="/find-password" 
                         className="
                             mx-1 text-gray-600
                             hover:text-gray-300">

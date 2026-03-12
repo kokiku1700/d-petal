@@ -211,14 +211,14 @@ export default function SignUpForm ({onSwitch}: Props) {
     // 회원 가입 폼에 입력한 값 최종 확인 및 서버에 제출
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        console.log()
         const res = await fetch("/api/sign-up", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name,
                 nickname,
-                provider: "local",
+                provider: provider,
                 email,
                 password,
                 birth,
@@ -228,7 +228,7 @@ export default function SignUpForm ({onSwitch}: Props) {
 
         if ( res.ok ) {
             alert("회원가입이 완료되었습니다. 다시 로그인해주세요.")
-            router.refresh();
+            router.replace("/");
         }
         
     };

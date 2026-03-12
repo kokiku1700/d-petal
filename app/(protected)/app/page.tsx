@@ -1,16 +1,17 @@
-import { cookies } from "next/headers";
+import { getSessionUser } from "@/lib/getSessionUser";
 import { redirect } from "next/navigation";
+import Main from "../_components/Main";
 
 export default async function App () {
-    const session = (await cookies()).get("dp_session");
+    const user = await getSessionUser();
 
-    if ( !session ) {
+    if ( !user ) {
         redirect("/");
     };
 
     return (
-        <>
-            로그인 후
-        </>
+        <div className="w-full">
+            <Main />
+        </div>
     );
 }

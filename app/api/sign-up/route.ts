@@ -24,7 +24,19 @@ export async function POST ( req: Request ) {
             insert into users
             (user_name, user_nickname, user_email, user_emailProvider, user_password, user_birth, user_sex)
             values
-            (${name}, ${nickname}, ${email}, ${provider}, ${hashedPassword}, ${birth}, ${sex});
+            (${name}, ${nickname}, ${email}, ${provider}, ${hashedPassword}, ${birth}, ${sex})
+            returning user_id;
+        `;
+        const userId = rows[0].user_id;
+
+        await sql`
+            insert into categories (user_id, name, color, is_default)
+            values
+            (${userId}, '공부', '#FFD6E0', true),
+            (${userId}, '운동', '#CDE7FF', true),
+            (${userId}, '독서', '#FFF1BB', true),
+            (${userId}, '취미', '#D8F5D0', true),
+            (${userId}, '기타', '#E8D9FF', true)
         `;
 
         return Response.json({ ok: true })
