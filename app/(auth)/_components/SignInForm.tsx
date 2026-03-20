@@ -70,8 +70,7 @@ export default function SignInForm ({ onSwitch }: Props) {
                         onChange={e => setPassword(e.target.value)}
                         placeholder="비밀번호" variant="signin"/>
                 <Button 
-                    type="submit" object="로그인" variant="submit"
-                    style={{backgroundColor: "#f3dff0"}} />
+                    type="submit" object="로그인" variant="submit"/>
             </form>
             <div className="flex gap-5">
                 {socialIcons.map((icon, i) => (

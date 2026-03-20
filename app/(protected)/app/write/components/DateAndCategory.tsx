@@ -44,7 +44,7 @@ export default function DateAndCategory ({ write, onChange }: WriteProps) {
                             object={category.name} 
                             type="button" color={category.color}
                             style={
-                                write.category === category.category_id 
+                                write.category === Number(category.category_id) 
                                 ? { boxShadow: `2px 2px 3px ${category.color}` }
                                 : undefined
                             }

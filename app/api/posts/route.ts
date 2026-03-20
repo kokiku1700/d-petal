@@ -1,6 +1,7 @@
 import { sql } from "@/lib/sql";
 import { getSessionUser } from "@/lib/getSessionUser";
 
+// 유저의 모든 글을 가져오는 api
 export async function GET () {
     const user = await getSessionUser();
 
@@ -19,6 +20,7 @@ export async function GET () {
             p.title,
             p.content,
             p.activity_date,
+            p.created_at,
             c.name as category_name,
             c.color as category_color
         from posts p

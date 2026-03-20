@@ -1,14 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import type { Post } from "@/types/post";
 
-type Post = {
-    post_id: number;
-    title: string;
-    content: string;
-    activity_date: string;
-    category_name: string;
-    category_color: string;
-}
-
+// 글 목록 전체를 가져온다. 
 export const usePostsQuery = () => {
     return useQuery<Post[]>({
         queryKey: ["posts"],

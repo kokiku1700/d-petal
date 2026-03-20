@@ -14,7 +14,7 @@ type ButtonStyle = React.CSSProperties & {
 };
 
 const styles = {
-    submit: "w-full px-4 py-2 text-xl rounded-4xl hover:bg-[#e6cfe1]",
+    submit: "w-full px-4 py-2 text-xl rounded-4xl bg-[#f3dff0] hover:bg-[#e6cfe1]",
     duplication: "w-full px-2 py-1.5 rounded-lg hover:bg-[#e6cfe1]",
     category: "px-3 py-2 rounded-lg bg-white hover:bg-[var(--category-color)]",
     emotion: "px-2 py-1.5 rounded-lg bg-white hover:bg-gray-100",

@@ -1,16 +1,6 @@
 import Button from "@/components/Button";
 import type { WriteProps } from "@/types/write";
-
-const emotions = [
-    { value: "joy", label: "기쁨", emoji: "😊"},
-    { value: "calm", label: "평온", emoji: "😌"},
-    { value: "achievement", label: "성취", emoji: "💪"},
-    { value: "expectation", label: "기대", emoji: "🤩"},
-    { value: "sad", label: "슬픔", emoji: "😞"},
-    { value: "angry", label: "분노", emoji: "😡"},
-    { value: "anxienty", label: "불안", emoji: "😰"},
-    { value: "tired", label: "피로", emoji: "😩"},
-];
+import { emotionsArr } from "@/constant/emotions";
 
 const stars = [1, 2, 3, 4, 5];
 
@@ -40,7 +30,7 @@ export default function EmotionAndSatisfaction ({ write, onChange }: WriteProps)
                     flex justify-around items-center">
                 <label className="text-center">감정</label>
                 <div className="flex flex-wrap gap-2">
-                    {emotions.map(emotion => (
+                    {emotionsArr.map(emotion => (
                         <Button 
                             key={emotion.label}
                             type="button" variant="emotion"

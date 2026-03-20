@@ -1,7 +1,9 @@
+import type { EmotionKey } from "@/constant/emotions";
+
 export type Write = {
     date: string;
     category: number;
-    emotion: string;
+    emotion: EmotionKey;
     satisfaction: number;
     title: string;
     content: string;
