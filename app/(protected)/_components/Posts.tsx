@@ -9,7 +9,6 @@ export default function Posts () {
     const { selectedCategory } = useCategoryStore();
     const selectedPosts = selectedCategory === null ? data : data?.filter(post => post.category_name === selectedCategory);
 
-
     return (
         <ul className="
             w-full px-2

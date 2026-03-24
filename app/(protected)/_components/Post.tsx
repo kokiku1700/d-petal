@@ -63,7 +63,7 @@ export default function Post ({ data }: Props) {
                 w-full max-w-[500px] p-3
                 flex flex-col gap-3
                 rounded-lg bg-white
-                truncate`}>
+                `}>
             <div className="relative flex gap-1">
                 <span
                     style={{color: darkenColor(data.category_color)}}
@@ -81,7 +81,7 @@ export default function Post ({ data }: Props) {
                         onClose={() => setMenuToggleState(false)} />
                 </div> 
             </div>  
-            <h1 className="text-xl font-bold">{data.title}</h1>
+            <h1 className="text-xl font-bold truncate">{data.title}</h1>
             <div 
                 style={
                     {
@@ -96,7 +96,7 @@ export default function Post ({ data }: Props) {
                 <span>{emotionsObj[data.emotion].emoji}</span>
                 <span>{emotionsObj[data.emotion].label}</span>
             </div>
-            <p>{data.content}</p>
+            <p className="truncate">{data.content}</p>
             <span 
                 className="
                     p-1

@@ -30,7 +30,7 @@ export default function CardMenu ({ postId, state, onClose }: Props) {
             className={`
                 ${state ? "block" : "hidden"}
                 absolute top-7 right-2
-                p-2 
+                p-2 whitespace-nowrap
                 rounded-lg shadow-sm
                 bg-white`}>
             <li 

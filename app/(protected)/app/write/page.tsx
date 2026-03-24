@@ -14,7 +14,7 @@ export default function Write () {
     const [write, setWrite] = useState<Write>({
         date: new Date().toISOString().slice(0, 10),
         category: 0,
-        emotion: "",
+        emotion: "joy",
         // 만족도
         satisfaction: 0,
         title: "",
@@ -31,7 +31,7 @@ export default function Write () {
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
                 date: write.date,
-                category: write.category,
+                category: Number(write.category),
                 emotion: write.emotion,
                 satisfaction: write.satisfaction,
                 title: write.title,

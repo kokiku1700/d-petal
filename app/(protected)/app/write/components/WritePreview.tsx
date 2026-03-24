@@ -9,11 +9,12 @@ type Props = {
 export default function WritePreview ({ write }: Props) {
     const { data } = useCategoriesQuery();
 
-    const selectedCategory = data?.find(category => category.category_id === write.category)
+    const selectedCategory = data?.find(category => Number(category.category_id) === write.category)
 
     const previewData = {
         post_id: 0,
         activity_date: write.date || new Date().toISOString().slice(0, 10),
+        category_id: write.category,
         category_name: selectedCategory?.name || "카테고리",
         category_color: selectedCategory?.color || "#fab9f4",
         emotion: write.emotion || "joy",

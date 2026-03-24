@@ -38,16 +38,13 @@ export default function Main () {
                         hover:shadow-lg">
                     <RecordSummary />
                 </Link>
-                <Link href="/app/record-chart" 
+                <div
                     className="
                         basis-5/10
                         bg-white shadow-gray-200
-                        rounded-lg shadow-md
-                        transition duration-300
-                        hover:-translate-y-0.5
-                        hover:shadow-lg">
+                        rounded-lg shadow-md">
                     <RecordChart />
-                </Link>
+                </div>
             </div>
             <div className="flex items-center gap-2 p-3">
                 <div className="basis-2/10">
