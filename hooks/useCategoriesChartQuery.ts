@@ -9,7 +9,7 @@ export type CategoryChartItem = {
 
 export const useCategoriesChartQuery = () => {
     return useQuery<CategoryChartItem[]>({
-        queryKey: ["category-chart"],
+        queryKey: ["categories", "category-chart"],
         queryFn: async () => {
             const res = await fetch("/api/category-chart");
 

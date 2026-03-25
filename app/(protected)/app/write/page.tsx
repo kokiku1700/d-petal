@@ -43,6 +43,7 @@ export default function Write () {
             alert("작성이 완료되었습니다.");
             await queryClient.invalidateQueries({queryKey: ["me"]});
             await queryClient.invalidateQueries({queryKey: ["posts"]});
+            await queryClient.invalidateQueries({queryKey: ["categories"]});
             router.replace("/app");
             router.refresh();
         }

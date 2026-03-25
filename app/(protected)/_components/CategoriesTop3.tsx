@@ -1,12 +1,12 @@
 "use client"
 
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery"
-import { useCategoryStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useCategoryStore";
 
 export default function CategoriesTop3 () {
     const { data } = useCategoriesChartQuery();
     const top3 = data?.slice(0, 3).filter(top => top.value > 0) || [];
-    const { selectedCategory, setCategory } = useCategoryStore();
+    const { selectedCategory, setCategory } = useFilterStore();
 
     return (
         <section 

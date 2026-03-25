@@ -1,11 +1,11 @@
 "use client"
 
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
-import { useCategoryStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useCategoryStore";
 
 export default function Categories () {
     const { data } = useCategoriesChartQuery();
-    const { selectedCategory, setCategory } = useCategoryStore();
+    const { selectedCategory, setCategory } = useFilterStore();
     const totalCategory = data?.reduce((acc, cur) => acc + Number(cur.value), 0) ?? 0;
     const allCategory = {
         category_id: 0,

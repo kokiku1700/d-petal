@@ -3,7 +3,7 @@
 import { PieChart, Pie, Sector, Tooltip, Legend, ResponsiveContainer, LabelList } from "recharts";
 import type { PieSectorShapeProps } from "recharts";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
-import { useCategoryStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useCategoryStore";
 
 type ChartItem = {
     name: string;
@@ -21,7 +21,7 @@ function PieSliceShape ( props: PieSectorShapeProps ) {
 export default function CategoriesChart () {
     const { data } = useCategoriesChartQuery();
     const chartData = (data ?? []).filter((d:ChartItem) => d.value > 0);
-    const setCategory = useCategoryStore(state => state.setCategory);
+    const setCategory = useFilterStore(state => state.setCategory);
 
     return (
         <figure 

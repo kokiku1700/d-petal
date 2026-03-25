@@ -1,9 +1,9 @@
 "use client"
 
-import { useCategoryStore } from "@/hooks/useCategoryStore"
+import { useFilterStore } from "@/hooks/useCategoryStore"
 
 export default function DateAndSelectedCategory () {
-    const { selectedCategory } = useCategoryStore();
+    const { selectedCategory } = useFilterStore();
 
     return (
         <>

@@ -4,14 +4,13 @@ import { usePostsQuery } from "@/hooks/usePostsQuery"
 import { useMemo, useState } from "react";
 import type { Tooltip } from "@/types/tooltip";
 import ToolTip from "./ToolTip";
+import { useFilterStore } from "@/hooks/useCategoryStore";
 
 type Day = {
     date: string;
     count: number;
     empty?: boolean;
 };
-
-
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -26,6 +25,7 @@ function getColor ( count: number ) {
 export default function RecordChart () {
     const { data: posts } = usePostsQuery();
     const [hovered, setHovered] = useState<Tooltip | null>(null);
+    const { selectedDate, setDate, resetFilter } = useFilterStore();
 
     const days = useMemo<Day[]>(() => {
         if ( !posts ) return [];
@@ -92,6 +92,15 @@ export default function RecordChart () {
         return result;
     }, [paddedDays]);
 
+    // 히트맵 클릭 시 글 목록 필터링 함수
+    const handleDateFilter = (date: string) => {
+        if ( selectedDate === date ) {
+            resetFilter();
+        } else {
+            setDate(date);
+        };
+    };
+
     return (
         <section className="w-full p-2">
             <h1>기록 차트</h1>
@@ -142,7 +151,10 @@ export default function RecordChart () {
                                             y: e.clientY,
                                         })}
                                         onMouseLeave={() => setHovered(null)}
-                                        className="w-3 h-3 rounded-sm cursor-pointer"
+                                        onClick={() => {handleDateFilter(day.date)}}
+                                        className={`
+                                            w-3 h-3 rounded-sm cursor-pointer
+                                            ${day.date === selectedDate ? "ring-2 ring-black" : ""}`}
                                         style={{ backgroundColor: day.empty ? "#ebedf0 " : getColor(day.count)}}/>
                                         
                                 ))}

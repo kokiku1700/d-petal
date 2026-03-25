@@ -1,11 +1,25 @@
 import { create } from "zustand";
 
-type CategoryStore = {
+type FilterStore = {
     selectedCategory: string | null;
+    selectedDate: string | null;
+    searchText: string;
+
     setCategory: (category: string | null) => void;
+    setDate: (date: string | null) => void;
+    setSearchText: (text: string) => void;
+    resetFilter: () => void;
 };
 
-export const useCategoryStore = create<CategoryStore>((set) => ({
+export const useFilterStore = create<FilterStore>((set) => ({
     selectedCategory: null,
-    setCategory: category => set({ selectedCategory: category })
+    selectedDate: null,
+    searchText: "",
+
+    setCategory: category => set({ selectedCategory: category }),
+    setDate: date => set({ selectedDate: date }),
+    setSearchText: text => set({ searchText: text }),
+    resetFilter: () => set({
+        selectedDate: null,
+    }),
 }));
