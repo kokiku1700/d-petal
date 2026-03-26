@@ -3,7 +3,7 @@
 import { PieChart, Pie, Sector, Tooltip, Legend, ResponsiveContainer, LabelList } from "recharts";
 import type { PieSectorShapeProps } from "recharts";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
-import { useFilterStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useFilterStore";
 
 type ChartItem = {
     name: string;

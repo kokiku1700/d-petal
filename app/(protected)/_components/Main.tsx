@@ -6,12 +6,11 @@ import Categories from "./Categories";
 import Posts from "./Posts";
 import CategoriesChart from "./CategoriesChart";
 import CategoriesTop3 from "./CategoriesTop3";
-import Input from "@/components/Input";
-import DateAndSelectedCategory from "./DateAndSelectedCategory";
+import SelecedFilter from "./SelectedFilter";
+import TextFilter from "./TextFilter";
 
 
 export default function Main () {
-
 
     return (
         <main className="w-full">
@@ -47,13 +46,13 @@ export default function Main () {
                 </div>
             </div>
             <div className="flex items-center gap-2 p-3">
-                <div className="basis-2/10">
-                    <DateAndSelectedCategory />
+                <div className="basis-1/5">
+                    <SelecedFilter />
                 </div>
-                <div className="basis-6/10 px-[10%]">
-                    <Input />
+                <div className="basis-3/5 px-[10%]">
+                    <TextFilter />
                 </div>
-                <div className="basis-2/10">
+                <div className="basis-1/5">
                     <Link 
                         href="/app/write"
                         className="

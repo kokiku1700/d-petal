@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FocusEventHandler } from "react";
 
-type Variant = "signin" | "signup" | "main" ;
+type Variant = "signin" | "signup" | "main" | "filter";
 
 type Props = {
     name: string;
@@ -18,6 +18,7 @@ const styles = {
     signin: "rounded-4xl py-2 px-4",
     signup: "rounded-lg py-1 px-2",
     main: "rounded-lg py-1 px-2 border-1 border-gray-400",
+    filter: "rounded-4xl py-2 px-6 ring-2 ring-pink-200 border-none focus:ring-2 focus:ring-pink-400",
 } as const;
 
 export default function Input ({ name, type, value, onChange, onBlur, placeholder, readonly, variant, maxLength }: Props) {
@@ -28,17 +29,17 @@ export default function Input ({ name, type, value, onChange, onBlur, placeholde
             name={name} type={type} value={value}
             onChange={onChange} onBlur={onBlur}
             className={`
-            w-full
-            text-xl ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
-            ${styles[variant]}
-            border-1 border-[#3b2f4a] bg-white
-            focus:outline-none
-            focus:ring focus:ring-[#e5c9dd] focus:border-[#e5c9dd]
-            read-only:pointer-events-none
-            read-only:cursor-default
-            read-only:bg-pink-100/70
-            read-only:text-gray-400
-            [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border p-2`}
+                w-full
+                text-xl ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
+                ${styles[variant]}
+                border-1 border-[#3b2f4a] bg-white
+                focus:outline-none
+                focus:ring focus:ring-[#e5c9dd] focus:border-[#e5c9dd]
+                read-only:pointer-events-none
+                read-only:cursor-default
+                read-only:bg-pink-100/70
+                read-only:text-gray-400
+                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border p-2`}
             placeholder={placeholder}
             readOnly={readonly}
             autoComplete="off"

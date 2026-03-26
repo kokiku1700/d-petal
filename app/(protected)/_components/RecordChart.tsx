@@ -4,7 +4,7 @@ import { usePostsQuery } from "@/hooks/usePostsQuery"
 import { useMemo, useState } from "react";
 import type { Tooltip } from "@/types/tooltip";
 import ToolTip from "./ToolTip";
-import { useFilterStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useFilterStore";
 
 type Day = {
     date: string;

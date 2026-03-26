@@ -1,7 +1,7 @@
 "use client"
 
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery"
-import { useFilterStore } from "@/hooks/useCategoryStore";
+import { useFilterStore } from "@/hooks/useFilterStore";
 
 export default function CategoriesTop3 () {
     const { data } = useCategoriesChartQuery();

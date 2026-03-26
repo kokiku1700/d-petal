@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import type { WriteProps } from "@/types/write";
-import { emotionsArr } from "@/constant/emotions";
+import { EmotionKey, emotionsArr } from "@/constant/emotions";
 
 const stars = [1, 2, 3, 4, 5];
 
@@ -42,7 +42,7 @@ export default function EmotionAndSatisfaction ({ write, onChange }: WriteProps)
                             onClick={() => {
                                 onChange(prev => ({
                                     ...prev,
-                                    emotion: emotion.value
+                                    emotion: emotion.value as EmotionKey
                                 }))
                             }}/>
                     ))}

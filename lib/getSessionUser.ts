@@ -21,22 +21,28 @@ export async function getSessionUser (): Promise<SessionUser | null> {
 
     const sessionTokenHash = sha256Hex(sessionToken);
 
-    const rows = await sql<SessionUser[]>`
-        select
-            u.user_id,
-            u.user_name,
-            u.user_nickname,
-            u.user_email,
-            u.user_emailprovider,
-            u.user_birth,
-            u.user_sex,
-            u.user_email_verified_at
-        from sessions s
-        join users u on u.user_id = s.user_id
-        where s.session_token_hash = ${sessionTokenHash}
-            and s.expires_at > now()
-        limit 1;
-    `;
+    try {
+        const rows = await sql<SessionUser[]>`
+            select
+                u.user_id,
+                u.user_name,
+                u.user_nickname,
+                u.user_email,
+                u.user_emailprovider,
+                u.user_birth,
+                u.user_sex,
+                u.user_email_verified_at
+            from sessions s
+            join users u on u.user_id = s.user_id
+            where s.session_token_hash = ${sessionTokenHash}
+                and s.expires_at > now()
+            limit 1;
+        `;
 
-    return rows[0] ?? null;
+        return rows[0] ?? null;
+    } catch ( error ) {
+        console.log(error);
+        throw error;
+    }
+    
 }
