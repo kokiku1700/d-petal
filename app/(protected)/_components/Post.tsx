@@ -30,7 +30,9 @@ function darkenColor ( hex: string, amount = 40 ) {
 };
 
 export default function Post ({ data }: Props) {
+    // 카드에 메뉴창 토글 상태
     const [menuToggleState, setMenuToggleState] = useState(false);
+    // 다른 곳 클릭해서 열려있는 메뉴창 닫을 때 사용
     const menuRef = useRef<HTMLDivElement>(null);
 
     const handleMenuToggle = () => {
@@ -55,19 +57,18 @@ export default function Post ({ data }: Props) {
         <article 
             style={
                 {
-                    boxShadow: `0px 4px 10px ${data.category_color}`, 
-                    backgroundColor: `${data.category_color}10`
+                    border: `1px solid ${data.category_color}`, 
                 }
             }
             className={`
                 w-full max-w-[500px] p-3
                 flex flex-col gap-3
-                rounded-lg bg-white
+                rounded-lg bg-white/80
                 `}>
             <div className="relative flex gap-1">
                 <span
                     style={{color: darkenColor(data.category_color)}}
-                    className="font-black">
+                    className="font-bold">
                     {data.category_name}
                 </span>
                 <span className="text-gray-600">{`(${data.activity_date.slice(0, 10)})`}</span>
@@ -83,16 +84,10 @@ export default function Post ({ data }: Props) {
             </div>  
             <h1 className="text-xl font-bold truncate">{data.title}</h1>
             <div 
-                style={
-                    {
-                        backgroundColor: `${data.category_color}40`,
-                        border: `2px solid ${data.category_color}`
-                    }
-                }
                 className="
                 w-fit px-3 py-1
                 flex justify-center items-center gap-1 
-                rounded-4xl">
+                border border-gray-200 rounded-4xl">
                 <span>{emotionsObj[data.emotion].emoji}</span>
                 <span>{emotionsObj[data.emotion].label}</span>
             </div>

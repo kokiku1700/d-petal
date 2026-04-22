@@ -43,6 +43,6 @@ export async function getSessionUser (): Promise<SessionUser | null> {
     } catch ( error ) {
         console.log(error);
         throw error;
-    }
+    };
     
-}
+};

@@ -19,7 +19,6 @@ export default function AuthShell ({
 				w-full h-screen 
 				overflow-hidden
 				border-1 border-pink-200 rounded-4xl 
-				shadow-lg shadow-pink-200
 				md:h-[90vh]">
             <div 
                 className={`

@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { sql } from "./sql";
 
 export function createSessionToken () {
     return crypto.randomBytes(32).toString("hex");
@@ -19,4 +20,13 @@ export function sessionCookieOptions () {
         sameSite: "lax" as const,
         path: "/",
     };
-}
+};
+
+export default async function deleteSession ( token: string ) {
+    const hash = sha256Hex(token);
+
+    await sql`
+        delete from sessions
+        where session_token_hash = ${hash};
+    `;
+};

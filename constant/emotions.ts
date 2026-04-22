@@ -21,3 +21,14 @@ export const emotionsArr = [
     { value: "anxienty", label: "불안", emoji: "😰"},
     { value: "tired", label: "피로", emoji: "😩"},
 ];
+
+export const emotionChartColor: Record<EmotionKey, string> = {
+    joy: "#f9a8d4",
+    calm: "#93c5fd",
+    achievement: "#c4b5fd",
+    expectation: "#fcd34d",
+    sad: "#60a5fa",
+    angry: "#f87171",
+    anxienty: "#a78bfa",
+    tired: "#9ca3af",
+};

@@ -103,8 +103,44 @@ export default function RecordChart () {
 
     return (
         <section className="w-full p-2">
-            <h1>기록 차트</h1>
-            <div className="flex flex-col p-1">
+            {/* 기록 차트 아이콘 및 타이틀 */}
+            <div className="flex items-center">
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 64 64" className="w-15 h-15">
+                    <rect x="10" y="10" width="44" height="44" rx="12" fill="#f3e8ff" />
+
+                    {[
+                        { x: 16, y: 16, c: "#e9d5ff" },
+                        { x: 24, y: 16, c: "#d8b4fe" },
+                        { x: 32, y: 16, c: "#f5d0fe" },
+                        { x: 40, y: 16, c: "#e9d5ff" },
+                        
+                        { x: 16, y: 24, c: "#d8b4fe" },
+                        { x: 24, y: 24, c: "#c084fc" },
+                        { x: 32, y: 24, c: "#e9d5ff" },
+                        { x: 40, y: 24, c: "#f5d0fe" },
+
+                        { x: 16, y: 32, c: "#f5d0fe" },
+                        { x: 24, y: 32, c: "#e9d5ff" },
+                        { x: 32, y: 32, c: "#a855f7" },
+                        { x: 40, y: 32, c: "#d8b4fe" },
+
+                        { x: 16, y: 40, c: "#e9d5ff" },
+                        { x: 24, y: 40, c: "#d8b4fe" },
+                        { x: 32, y: 40, c: "#f5d0fe" },
+                        { x: 40, y: 40, c: "#e9d5ff" },
+
+                    ].map((cell, i) => (
+                        <rect 
+                            key={i}
+                            x={cell.x} y={cell.y} 
+                            width="6" height="6" rx="2" fill={cell.c} />
+                    ))}
+                </svg>
+                <h1 className="text-xl">기록 차트</h1>
+            </div>
+            <div className="flex flex-col items-center p-1">
                 <div className="flex pb-2">
                     <div className="w-6 pr-2" />
                     <div className="flex gap-1">

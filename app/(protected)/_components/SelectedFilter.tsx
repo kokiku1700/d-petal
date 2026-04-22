@@ -14,18 +14,22 @@ export default function SelectedFilter () {
         <ul className="w-full flex gap-2 text-gray-500">
             <li 
                 className="
-                    w-full bg-white py-1
-                    shadow-md text-center rounded-lg">
+                    w-full py-1
+                    text-center 
+                    border border-gray-200
+                    bg-white/80 rounded-lg">
                 <label>카테고리</label>
                 <span className="mx-1">:</span>
-                <span style={{ color: `${color}`, textShadow: "1px 1px 2px gray"}}>
+                <span style={{ color: `${color}` }}>
                     {selectedCategory === null ? "전체" : selectedCategory}
                 </span>
             </li>
             <li 
                 className="
-                    w-full bg-white py-1
-                    shadow-md text-center rounded-lg">                
+                    w-full py-1
+                    text-center 
+                    border border-gray-200
+                    bg-white/80 rounded-lg">                
                 <label>날짜</label>
                 <span className="mx-1">:</span>
                 <span className="text-pink-200">

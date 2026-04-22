@@ -18,11 +18,13 @@ export default function Categories () {
             <li 
                 key={allCategory.category_id}
                 onClick={() => setCategory(null)}
-                    style={{ background: allCategory.color }}
+                    style={{ 
+                        background: selectedCategory === null ? `linear-gradient(135deg, ${allCategory.color}10, ${allCategory.color}90)` : `${allCategory.color}20`, 
+                        boxShadow: selectedCategory === null ? `0px 4px 2px ${allCategory.color}` : undefined
+                    }}
                     className={`
                         py-5 
-                        text-center cursor-pointer
-                        ${selectedCategory === null ? "border-1" : ""}`}>
+                        text-center cursor-pointer transition`}>
                 {allCategory.name}
                 <span className="ml-1">({totalCategory})</span>
             </li>
@@ -30,11 +32,13 @@ export default function Categories () {
                 <li 
                     key={category.id}
                     onClick={() => setCategory(category.name)}
-                    style={{ background: category.color }}
+                    style={{ 
+                        background: selectedCategory === category.name ? `linear-gradient(135deg, ${category.color}10, ${category.color}90)` : `${category.color}20`,
+                        boxShadow: selectedCategory === category.name ? `0px 4px 2px ${category.color}` : undefined
+                    }}
                     className={`
                         py-5 
-                        text-center cursor-pointer
-                        ${selectedCategory === category.name ? "border-1" : ""}`}>
+                        text-center cursor-pointer transition`}>
                     {category.name}
                     <span className="ml-1">({category.value})</span>
                 </li>  
