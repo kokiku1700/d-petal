@@ -1,5 +1,6 @@
 "use client";
 
+import { useProfileEditTabStore } from "@/hooks/useProfileEditTabStore";
 import { SessionUser } from "@/lib/getSessionUser";
 import profile from "@/public/profile.png";
 import profileImgEdit from "@/public/profileImgEdit.png";
@@ -9,10 +10,12 @@ import { useRouter } from "next/navigation";
 
 type Props = {
     user: SessionUser | null;
+    openEditModal: () => void;
 };
 
-export default function MyProfileSummary ( { user }: Props ) {
+export default function MyProfileSummary ( { user, openEditModal }: Props ) {
     const queryClient = useQueryClient();
+    const setSelectedTab = useProfileEditTabStore(state => state.setSelectedTab);
     const router = useRouter();
 
     const handleLogOut = async () => {
@@ -54,6 +57,7 @@ export default function MyProfileSummary ( { user }: Props ) {
                 <Image 
                     src={profileImgEdit} 
                     alt="프로필 이미지 수정" 
+                    onClick={() => {openEditModal(); setSelectedTab("image");}}
                     className="
                         w-[20%] p-2
                         shadow-md rounded-full bg-white
@@ -72,13 +76,20 @@ export default function MyProfileSummary ( { user }: Props ) {
                         {user?.user_name}
                     </span>   
                 </div>
-                <p>나를 설명할 문구</p>
+                <p 
+                    className="
+                        mt-1
+                        text-md text-gray-600
+                        line-clamp-2 italic">
+                    {user?.user_bio ? user.user_bio : "나를 설명해보세요"}
+                </p>
             </div>
             <div 
                 className="
                     absolute top-5 right-10
                     flex gap-2">
                 <span 
+                    onClick={openEditModal}
                     className="
                         p-2 rounded-xl bg-white
                         border border-gray-400

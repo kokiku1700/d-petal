@@ -10,6 +10,7 @@ export type SessionUser = {
     user_emailprovider: string;
     user_birth: string;
     user_sex: string;
+    user_bio: string;
     user_email_verified_at: string | null;
 };
 
@@ -31,6 +32,7 @@ export async function getSessionUser (): Promise<SessionUser | null> {
                 u.user_emailprovider,
                 u.user_birth,
                 u.user_sex,
+                u.user_bio,
                 u.user_email_verified_at
             from sessions s
             join users u on u.user_id = s.user_id

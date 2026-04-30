@@ -29,7 +29,6 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
 
     useEffect(() => {
         onChangeBirth(birth);
-        console.log(birth)
     }, [birth]);
 
     const onChangeMaxMin = ( e: React.FocusEvent<HTMLInputElement> ) => {
@@ -58,7 +57,6 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
                 ? new Date(Number(yyyymmdd.year), Number(yyyymmdd.month), 0).getDate() 
                 : 31;
             if ( Number(value) > lastDay ) {
-                console.log(lastDay)
                 setYyyymmdd(prev => ({...prev, [name]: lastDay.toString()}));
             } else if ( Number(value) < 0 ) {
                 setYyyymmdd(prev => ({...prev, [name]: "1"}));
