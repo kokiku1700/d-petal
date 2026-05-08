@@ -25,7 +25,10 @@ export default function Profile () {
                     border-b border-gray-200 p-3">
                 <div className="basis-2/5">
                     <Image 
-                        src={profileImg} alt="프로필 이미지" 
+                        src={me.user.user_profile_image 
+                            ? me.user.user_profile_image 
+                            : profileImg} alt="프로필 이미지" 
+                        width={100} height={100}
                         className="ring-2 ring-gray-300 rounded-full"/>
                 </div>
                 <div className="basis-3/5 flex flex-col gap-3">

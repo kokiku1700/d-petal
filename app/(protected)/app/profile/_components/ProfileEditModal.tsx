@@ -75,7 +75,7 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                     </aside>
                     <section className="basis-5/7 p-4">
                         {selectedTab === "info" && <ProfileInfoEdit user={user} closeEditModal={closeEditModal} />}
-                        {selectedTab === "image" && <ProfileImageEdit />}
+                        {selectedTab === "image" && <ProfileImageEdit closeEditModal={closeEditModal} />}
                         {selectedTab === "password" && <PasswordEdit user={user} closeEditModal={closeEditModal} />}
                     </section>
                 </div>

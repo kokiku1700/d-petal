@@ -60,7 +60,13 @@ export default function ProfileInfoEdit ({ user, closeEditModal }: Props) {
                 <textarea 
                     value={bio}
                     onChange={e => setBio(e.target.value)}
-                    className="rounded-xl border border-gray-400" />
+                    className="
+                        p-2
+                        rounded-xl border border-gray-600
+                        resize-none
+                        focus:outline-none
+                        focus:ring focus:ring-[#e5c9dd] 
+                        focus:border-[#e5c9dd]" />
             </div>
             <div className="flex flex-col gap-2">
                 <label className="text-lg font-semibold">

@@ -12,6 +12,7 @@ export type SessionUser = {
     user_sex: string;
     user_bio: string;
     user_email_verified_at: string | null;
+    user_profile_image: string | null;
 };
 
 export async function getSessionUser (): Promise<SessionUser | null> {
@@ -33,7 +34,8 @@ export async function getSessionUser (): Promise<SessionUser | null> {
                 u.user_birth,
                 u.user_sex,
                 u.user_bio,
-                u.user_email_verified_at
+                u.user_email_verified_at,
+                u.user_profile_image
             from sessions s
             join users u on u.user_id = s.user_id
             where s.session_token_hash = ${sessionTokenHash}

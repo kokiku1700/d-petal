@@ -46,14 +46,21 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                 w-full p-2
                 rounded-xl
                 border border-gray-400">
-            <div 
-                className="
-                    relative
-                    w-[15%] rounded-full">
-                <Image 
-                    src={profile} 
-                    alt="프로필 이미지" 
-                    className="w-full"/>
+            <div className="relative w-[15%]">
+                <div 
+                    className="
+                        rounded-full
+                        border border-black 
+                        bg-white
+                        overflow-hidden">
+                    <Image 
+                        src={user?.user_profile_image 
+                                ? user.user_profile_image 
+                                : profile} 
+                        alt="프로필 이미지" 
+                        width={100} height={100}
+                        className="w-full object-cover"/>
+                </div>
                 <Image 
                     src={profileImgEdit} 
                     alt="프로필 이미지 수정" 
