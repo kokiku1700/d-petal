@@ -1,10 +1,10 @@
 "use client";
 
-import { usePostsQuery } from "@/hooks/usePostsQuery"
 import { useMemo, useState } from "react";
 import type { Tooltip } from "@/types/tooltip";
 import ToolTip from "./ToolTip";
 import { useFilterStore } from "@/hooks/useFilterStore";
+import { useHeatmapQuery } from "@/hooks/useHeatmapQuery";
 
 type Day = {
     date: string;
@@ -23,12 +23,12 @@ function getColor ( count: number ) {
 };
 
 export default function RecordChart () {
-    const { data: posts } = usePostsQuery();
+    const { data } = useHeatmapQuery();
     const [hovered, setHovered] = useState<Tooltip | null>(null);
-    const { selectedDate, setDate, resetFilter } = useFilterStore();
+    const { selectedDate, setDate, setPage, resetFilter } = useFilterStore();
 
     const days = useMemo<Day[]>(() => {
-        if ( !posts ) return [];
+        if ( !data?.heatmap ) return [];
 
         const map = new Map<string, number>();
         const result: Day[] = [];
@@ -37,8 +37,8 @@ export default function RecordChart () {
         const start = new Date(year, 0, 1);
         const end = new Date(year, 11, 31);
 
-        posts.forEach(post => {
-            const date = post.activity_date.slice(0, 10);
+        data.heatmap.forEach(heatmap => {
+            const date = heatmap.date.slice(0, 10);
             map.set(date, (map.get(date) || 0) + 1);
         });
 
@@ -49,7 +49,7 @@ export default function RecordChart () {
         };
 
         return result;
-    }, [posts]);
+    }, [data]);
 
     const paddedDays = useMemo<Day[]>(() => {
         if ( !days.length ) return [];
@@ -97,6 +97,7 @@ export default function RecordChart () {
         if ( selectedDate === date ) {
             resetFilter();
         } else {
+            setPage(1);
             setDate(date);
         };
     };
