@@ -51,8 +51,13 @@ export default function SignInForm ({ onSwitch }: Props) {
     const handleSocialLogin = ( provider: string ) => {
         if ( provider === "google" ) {
             window.location.href = "/api/auth/google";
-        }
-        
+        } else if ( provider === "kakao" ) {
+            window.location.href = "/api/auth/kakao";
+        } else if ( provider === "naver" ) {
+            window.location.href = "/api/auth/naver";
+        } else if ( provider === "github" ) {
+            window.location.href = "/api/auth/github";
+        }; 
     };
 
     return (
