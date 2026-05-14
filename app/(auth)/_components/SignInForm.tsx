@@ -3,10 +3,10 @@
 import Input from "@/components/Input"
 import Button from "@/components/Button"
 import Image from "next/image"
-import google from "@/public/icons/google.svg";
-import kakao from "@/public/icons/kakaotalk.svg";
-import naver from "@/public/icons/naver.svg";
-import github from "@/public/icons/github.svg";
+import google from "@/public/icons/google.png";
+import kakao from "@/public/icons/kakao.png";
+import naver from "@/public/icons/naver.png";
+import github from "@/public/icons/github.png";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -47,6 +47,14 @@ export default function SignInForm ({ onSwitch }: Props) {
         }
     };
 
+    // 소셜 로그인 함수
+    const handleSocialLogin = ( provider: string ) => {
+        if ( provider === "google" ) {
+            window.location.href = "/api/auth/google";
+        }
+        
+    };
+
     return (
         <div className="
             w-full h-full
@@ -72,15 +80,18 @@ export default function SignInForm ({ onSwitch }: Props) {
                 <Button 
                     type="submit" object="로그인" variant="submit"/>
             </form>
-            <div className="flex gap-5">
+            <div className="grid grid-cols-2 gap-3">
                 {socialIcons.map((icon, i) => (
-                    <Image 
-                        key={i}
-                        src={icon.src}
-                        alt={icon.alt}
-                        width={40}
-                        height={40}
-                        className="w-12 h-12 rounded-4xl border-2 border-black" />
+                    <button 
+                        key={i} 
+                        onClick={() => handleSocialLogin(icon.provider)}>
+                        <Image  
+                            src={icon.src}
+                            alt={icon.alt}
+                            width={200}
+                            height={40}
+                            className="w-full h-12 cursor-pointer"/>
+                    </button>
                 ))}
             </div>
             <div className="w-[60%] border-t">

@@ -15,7 +15,7 @@ type Props = {
 };
 
 const styles = {
-    signin: "rounded-4xl py-2 px-4",
+    signin: "rounded-lg py-2 px-4",
     signup: "rounded-lg py-1 px-2",
     main: "rounded-lg py-1 px-2 border-1 border-gray-400",
     filter: "rounded-4xl py-2 px-6 ring-2 ring-pink-200 border-none focus:ring-2 focus:ring-pink-400",

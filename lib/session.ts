@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { sql } from "./sql";
+import { cookies } from "next/headers";
 
 export function createSessionToken () {
     return crypto.randomBytes(32).toString("hex");
@@ -21,6 +22,35 @@ export function sessionCookieOptions () {
         path: "/",
     };
 };
+
+export async function createSession ( userId: number ) {
+    const token = createSessionToken();
+    const hash = sha256Hex(token);
+
+    await sql`
+        insert into sessions (
+            user_id,
+            session_token_hash,
+            expires_at
+        )
+        values (
+            ${userId},
+            ${hash},
+            now() + interval '7 days'
+        );
+    `;
+
+    const cookiesStore = await cookies();
+
+    cookiesStore.set(
+        SESSION_COOKIE_NAME,
+        token,
+        {
+            ...sessionCookieOptions(),
+            maxAge: 60 * 60 * 24 * 7,
+        }
+    );
+}
 
 export default async function deleteSession ( token: string ) {
     const hash = sha256Hex(token);

@@ -12,7 +12,7 @@ export default async function MyRecordSummary () {
     if ( !user ) return null;
 
     const summary = await getSummary(user.user_id);
-    const topEmotion = emotionsObj[summary.top_emotion as EmotionKey].label;
+    const topEmotion = summary.top_emotion ? emotionsObj[summary.top_emotion as EmotionKey].label : null;
 
     const summaryArr = [
         {
