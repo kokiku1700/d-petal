@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'img1.kakaocdn.net',
             },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+            },
         ],
     },
 };
