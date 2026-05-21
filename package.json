@@ -17,6 +17,7 @@
         "next-cloudinary": "^6.17.5",
         "postgres": "^3.4.8",
         "react": "19.2.3",
+        "react-colorful": "^5.7.0",
         "react-dom": "19.2.3",
         "recharts": "^3.7.0",
         "zod": "^4.3.6",

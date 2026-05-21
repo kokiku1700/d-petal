@@ -32,7 +32,7 @@ export default function WriteContent ({ write, onChange }: WriteProps) {
                         }))
                     }}
                     className="
-                        w-full min-h-[200px]
+                        w-full min-h-[200px] p-2
                         rounded-lg border-1 border-gray-400
                         resize-none"/>
             </div>

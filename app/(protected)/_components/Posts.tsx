@@ -6,15 +6,17 @@ import Post from "./Post";
 
 export default function Posts () {
     const { data, isLoading, isError } = usePostsQuery();
+    // 페이지네이션 현재 넘버
     const page = useFilterStore(state => state.page);
+    // 페이지네이션 넘버 변경
     const setPage = useFilterStore(state => state.setPage);
 
     if ( isLoading ) {
-        return <p>기록을 불러오는 중입니다.</p>
+        return <p className="w-full text-center mt-5">기록을 불러오는 중입니다.</p>
     };
 
     if ( isError ) {
-        return <p>기록을 불러오지 못했습니댜.</p>
+        return <p className="w-full text-center mt-5">기록을 불러오지 못했습니댜.</p>
     };
 
     const posts = data?.posts ?? [];
@@ -35,11 +37,11 @@ export default function Posts () {
             </ul>
 
             {posts.length === 0 && (
-                <p>
+                <p className="w-full text-center mt-5">
                     조건에 맞는 기록이 없습니다.
                 </p>
             )}
-
+            
             {pagination && pagination.totalPages > 1 && (
                 <div className="w-full flex gap-2 items-center m-2">
                     <button

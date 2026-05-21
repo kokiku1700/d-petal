@@ -2,6 +2,7 @@ import { getSessionUser } from "@/lib/getSessionUser";
 import MyInfo from "./_components/MyInfo";
 import MyRecordSummary from "./_components/MyRecordSummary";
 import ProfileEditController from "./_components/ProfileEditController";
+import CategoriesEdit from "./_components/CategoriesEdit";
 
 
 export default async function Profile () {
@@ -25,6 +26,7 @@ export default async function Profile () {
                     <MyRecordSummary />
                 </div>
             </ProfileEditController> 
+            <CategoriesEdit />
         </main>
     )
 }
