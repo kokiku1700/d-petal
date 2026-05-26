@@ -23,13 +23,18 @@ export default function Profile () {
                 className="
                     flex justify-around items-center
                     border-b border-gray-200 p-3">
-                <div className="basis-2/5">
+                <div 
+                    className="
+                        basis-2/5 w-full 
+                        aspect-square
+                        rounded-full overflow-hidden 
+                        ring-2 ring-gray-300 ">
                     <Image 
                         src={me.user.user_profile_image 
                             ? me.user.user_profile_image 
                             : profileImg} alt="프로필 이미지" 
                         width={100} height={100}
-                        className="ring-2 ring-gray-300 rounded-full"/>
+                        className="w-full object-cover"/>
                 </div>
                 <div className="basis-3/5 flex flex-col gap-3">
                     <span className="text-lg font-bold text-center">

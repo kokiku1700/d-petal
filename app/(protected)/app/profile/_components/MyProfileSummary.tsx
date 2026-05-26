@@ -49,7 +49,7 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
             <div className="relative w-[15%]">
                 <div 
                     className="
-                        rounded-full
+                        rounded-full aspect-square
                         border border-black 
                         bg-white
                         overflow-hidden">

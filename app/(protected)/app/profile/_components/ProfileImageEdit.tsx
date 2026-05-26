@@ -49,21 +49,29 @@ export default function ProfileImageEdit ( { closeEditModal }: Props ) {
     };
 
     return (
-        <form onSubmit={imageUpdate}>
+        <form onSubmit={imageUpdate} className="flex flex-col gap-5">
             <div className="flex items-center gap-2">
-                <div className="w-full flex justify-center">
+                <div 
+                    className="
+                        w-full flex justify-center
+                        rounded-full
+                        overflow-hidden">
                     {preview 
-                        ? <Image src={preview} alt="미리보기" width={100} height={100} />
+                        ? <Image 
+                            src={preview} alt="미리보기" 
+                            width={100} height={100} 
+                            className="w-full object-cover"/>
                         : "미리보기"
                     }
-                    
                 </div>
                 <div className="w-full">
                     <input 
                         name="file" type="file"
                         accept="image/"
                         onChange={handleChange}
-                        className="border border-pink-300" />
+                        className="
+                            p-5 rounded-xl
+                            border border-dashed border-pink-300"/>
                 </div>
             </div>
             <div className="w-[70%] mx-auto flex gap-3">
