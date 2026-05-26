@@ -228,7 +228,7 @@ export default function SignUpForm ({onSwitch}: Props) {
 
         if ( res.ok ) {
             alert("회원가입이 완료되었습니다. 다시 로그인해주세요.")
-            router.replace("/");
+            router.refresh();
         }
         
     };
