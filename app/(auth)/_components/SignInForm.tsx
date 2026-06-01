@@ -62,18 +62,23 @@ export default function SignInForm ({ onSwitch }: Props) {
 
     return (
         <div className="
-            w-full h-full
+            relative
+            w-full min-h-full
             flex flex-col justify-center items-center gap-10
             text-gray-800
-            bg-gradient-to-b from-white to-[#fff6fb]">
-            <h1 className="mb-5 text-5xl text-[#3b2f4a]">
+            bg-[url('/signInLeftImg.jpg')]
+            bg-cover bg-center bg-no-repeat
+            lg:bg-gradient-to-b lg:from-white lg:to-[#fff6fb]">
+            <div className="absolute inset-0 bg-white/50 lg:hidden" />
+            <h1 className="z-10 mb-5 text-5xl text-[#3b2f4a]">
                 Sign In
             </h1>
             <form 
                 onSubmit={onSubmit}
                 className="
-                    w-[60%] 
-                    flex flex-col justify-center items-center gap-6">
+                    w-[80%] z-10 
+                    flex flex-col justify-center items-center gap-6
+                    md:w-[60%]">
                     <Input 
                         name="email" value={email}
                         onChange={e => setEmail(e.target.value)}
@@ -85,7 +90,13 @@ export default function SignInForm ({ onSwitch }: Props) {
                 <Button 
                     type="submit" object="로그인" variant="submit"/>
             </form>
-            <div className="grid grid-cols-2 gap-3">
+            <div 
+                className="
+                    z-10 grid grid-cols-1 gap-3
+                    px-4
+                    sm:grid-cols-2
+                    lg:grid-cols-1 
+                    2xl:grid-cols-2">
                 {socialIcons.map((icon, i) => (
                     <button 
                         key={i} 
@@ -99,15 +110,20 @@ export default function SignInForm ({ onSwitch }: Props) {
                     </button>
                 ))}
             </div>
-            <div className="w-[60%] border-t">
+            <div 
+                className="
+                    z-10 w-[80%] border-t
+                    md:w-[60%]">
                 <p className="my-2">
                     아직 계정이 없나요? 
                     <span 
                         onClick={onSwitch}
                         className="
-                            mx-1 text-[#e5c9dd]
+                            mx-1 text-[#e183c7]
                             cursor-pointer
-                            hover:underline">
+                            hover:underline
+                            hover:text-[#f70cb4]
+                            lg:text-[#e5c9dd] lg:hover:text-[#e183c7]">
                         회원가입
                     </span>
                 </p>

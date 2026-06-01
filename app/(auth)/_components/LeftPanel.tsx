@@ -5,7 +5,7 @@ type Props = {
     mode: string;
 };
 
-export default function LeftPanel ({mode}: Props) {
+export default function LeftPanel ({ mode }: Props) {
 
     return (
         <div className="relative w-full h-screen md:h-[90vh]">

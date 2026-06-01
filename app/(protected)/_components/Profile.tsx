@@ -10,7 +10,7 @@ export default function Profile () {
     const { data: categories } = useCategoriesChartQuery(); 
 
     if ( !me || !categories ) return null;
-
+    
     const postSum = categories.reduce((a, b) => a + b.value, 0);
 
     return (

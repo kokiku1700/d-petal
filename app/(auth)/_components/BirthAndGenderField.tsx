@@ -94,8 +94,11 @@ export default function BirthAndGenderField ({ birthValue, onChangeBirth, gender
     };
 
     return (
-        <div className="w-full flex gap-5">
-            <div className="w-full">
+        <div 
+            className="
+                w-full flex flex-col gap-5
+                xl:flex-row">
+            <div className="w-[70%]">
                 <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>
                     생년월일

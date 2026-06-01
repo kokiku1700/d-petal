@@ -15,12 +15,7 @@ export default function RootLayout({
             className="
                 w-full min-h-screen
                 flex justify-center items-center">
-            <div 
-                className="
-                    w-full min-h-screen 
-                    md:min-h-[90vh] md:w-[90vw]">
-                {children}
-            </div>
+            {children}
         </div>
   	);
 }

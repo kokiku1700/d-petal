@@ -238,7 +238,7 @@ export default function SignUpForm ({onSwitch}: Props) {
             onSubmit={onSubmit}
             autoComplete="off"
             className="
-                relative w-full h-full pb-15
+                relative w-full min-h-full pb-15
                 flex flex-col justify-center items-center
                 overflow-y-auto
                 bg-gradient-to-b from-white to-[#fff6fb]">
@@ -249,14 +249,21 @@ export default function SignUpForm ({onSwitch}: Props) {
                     cursor-pointer">
                 <Image src={out} alt="뒤로 가기" width={50} />
             </span>
-            <div className="w-[70%] flex flex-col gap-12">
+            <div 
+                className="
+                    w-[90%] flex flex-col gap-12
+                    pb-10
+                    md:w-[70%]">
                 <h1 className="
                     text-5xl text-[#3b2f4a] text-center
                     cursor-default">
                     Sign Up
                 </h1>
-                <div className="flex gap-5">
-                    <div className="w-[35%]">
+                <div 
+                className="
+                    flex flex-col gap-5 
+                    md:flex-row lg:flex-col xl:flex-row">
+                    <div className="w-[70%] md:w-[35%] lg:w-[80%]">
                         <label className="text-lg text-[#3b2f4a] font-semibold">
                             <span className="text-red-500 mx-1">*</span>
                             이름
@@ -275,7 +282,7 @@ export default function SignUpForm ({onSwitch}: Props) {
                             {errorMessage.name}
                         </p>
                     </div>
-                    <div className="w-[65%]">
+                    <div className="w-[85%] sm:w-[65%] lg:w-[90%]">
                         <label className="text-lg text-[#3b2f4a] font-semibold">
                             <span className="text-red-500 mx-1">*</span>
                             닉네임

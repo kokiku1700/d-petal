@@ -22,7 +22,12 @@ export default function PasswordField ({
     errMsgPw, errMsgPwCheck, passwordStatus, passwordCheckStatus }: Props) { 
 
     return (
-        <div className="w-full flex gap-5">
+        <div 
+            className="
+                w-[80%] flex flex-col gap-5
+                md:w-full md:flex-row
+                lg:w-full lg:flex-col
+                xl:flex-row">
             <div className="w-full">
                 <label className="text-lg text-[#3b2f4a] font-semibold">
                     <span className="text-red-500 mx-1">*</span>

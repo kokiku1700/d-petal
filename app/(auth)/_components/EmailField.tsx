@@ -80,7 +80,10 @@ export default function EmailField ({value, onChange, onClick, status, message}:
                 <span className="text-red-500 mx-1">*</span>
                 이메일
             </label>
-            <div className="flex items-center gap-1">
+            <div 
+                className="
+                    flex flex-col items-center gap-1 
+                    md:flex-row lg:flex-col xl:flex-row">
                 <div className="flex flex-[8] items-center gap-1">
                     <Input 
                         name="id"
@@ -117,7 +120,7 @@ export default function EmailField ({value, onChange, onClick, status, message}:
                         ))}
                     </select>
                 </div>
-                <div className="flex-[2]">
+                <div className="flex-[2] w-[70%]">
                     <Button type="button" object="중복확인" variant="duplication" onClick={onClick} />
                 </div>
             </div>
