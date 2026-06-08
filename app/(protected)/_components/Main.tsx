@@ -14,8 +14,11 @@ export default function Main () {
 
     return (
         <main className="w-full flex flex-col gap-3 p-5">
-            <div className="
-                flex flex-cols gap-3">
+            <div 
+                className="
+                    flex flex-col gap-3
+                    lg:grid lg:grid-cols-2
+                    2xl:flex 2xl:flex-row">
                 <Link href="/app/profile" 
                     className="
                         basis-2/10
@@ -28,30 +31,40 @@ export default function Main () {
                 </Link>
                 <Link href="/app/record-summary" 
                     className="
-                        basis-3/10
+                        hidden basis-3/10
                         border border-gray-200
                         rounded-lg bg-white/80 
                         transition duration-300
                         hover:ring
-                        hover:ring-purple-200">
+                        hover:ring-purple-200
+                        lg:block">
                     <RecordSummary />
                 </Link>
                 <div
                     className="
-                        basis-5/10
+                        hidden basis-5/10
                         border border-gray-200
-                        rounded-lg bg-white/80">
+                        rounded-lg bg-white/80
+                        lg:block
+                        lg:col-span-2">
                     <RecordChart />
                 </div>
             </div>
-            <div className="flex items-center gap-2">
-                <div className="basis-1/5">
+            <div 
+                className="
+                    grid grid-cols-2 gap-2 items-center
+                    xl:flex">
+                <div className="basis-1/5 order-1">
                     <SelecedFilter />
                 </div>
-                <div className="basis-3/5 px-[10%]">
+                <div 
+                    className="
+                        basis-3/5 px-[10%]
+                        col-span-2 order-3
+                        xl:order-2">
                     <TextFilter />
                 </div>
-                <div className="basis-1/5">
+                <div className="basis-1/5 order-2 xl:order-3">
                     <Link 
                         href="/app/write"
                         className="
@@ -68,14 +81,20 @@ export default function Main () {
                     </Link>
                 </div>
             </div>
-            <div className="flex gap-2">
+            <div 
+                className="
+                    flex flex-col gap-2
+                    xl:flex-row">
                 <div className="basis-1/10">
                     <Categories />
                 </div>
                 <div className="basis-7/10">
                     <Posts />
                 </div>
-                <div className="flex flex-col gap-2 basis-2/10">
+                <div 
+                    className="
+                        hidden flex flex-col gap-2 basis-2/10
+                        xl:flex">
                     <CategoriesChart />
                     <CategoriesTop3 />   
                 </div>

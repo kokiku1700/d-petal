@@ -159,7 +159,6 @@ export default function RecordChart () {
                         })}
                     </div>
                 </div>
-                
 
                 <div className="flex">
                     <div 

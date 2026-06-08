@@ -14,7 +14,13 @@ export default function Categories () {
     };
 
     return (
-        <ul className="w-full">
+        <ul 
+            className="
+                w-full grid grid-cols-2 gap-2
+                sm:grid-cols-3
+                md:grid-cols-4
+                lg:grid-cols-5
+                xl:flex xl:flex-col">
             <li 
                 key={allCategory.category_id}
                 onClick={() => setCategory(null)}
@@ -23,7 +29,7 @@ export default function Categories () {
                         boxShadow: selectedCategory === null ? `0px 4px 2px ${allCategory.color}` : undefined
                     }}
                     className={`
-                        py-5 
+                        w-full py-5 
                         text-center cursor-pointer transition`}>
                 {allCategory.name}
                 <span className="ml-1">({totalCategory})</span>
@@ -37,7 +43,7 @@ export default function Categories () {
                         boxShadow: selectedCategory === category.name ? `0px 4px 2px ${category.color}` : undefined
                     }}
                     className={`
-                        py-5 
+                        w-full py-5 
                         text-center cursor-pointer transition`}>
                     {category.name}
                     <span className="ml-1">({category.value})</span>

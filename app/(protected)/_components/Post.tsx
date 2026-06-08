@@ -55,16 +55,13 @@ export default function Post ({ data }: Props) {
 
     return (
         <article 
-            style={
-                {
+            style={{
                     border: `1px solid ${data.category_color}`, 
-                }
-            }
+                }}
             className={`
                 w-full max-w-[500px] p-3
                 flex flex-col gap-3
-                rounded-lg bg-white/80
-                `}>
+                rounded-lg bg-white/80`}>
             <div className="relative flex gap-1">
                 <span
                     style={{color: darkenColor(data.category_color)}}
@@ -81,17 +78,26 @@ export default function Post ({ data }: Props) {
                         state={menuToggleState} 
                         onClose={() => setMenuToggleState(false)} />
                 </div> 
-            </div>  
-            <h1 className="text-xl font-bold truncate">{data.title}</h1>
+            </div> 
             <div 
                 className="
-                w-fit px-3 py-1
-                flex justify-center items-center gap-1 
-                border border-gray-200 rounded-4xl">
-                <span>{emotionsObj[data.emotion].emoji}</span>
-                <span>{emotionsObj[data.emotion].label}</span>
-            </div>
-            <p className="truncate">{data.content}</p>
+                    flex justify-between items-center px-2
+                    lg:flex-col lg:items-start">
+                <h1 className="text-xl font-bold truncate">
+                    {data.title}
+                </h1>
+                <div 
+                    className="
+                    w-fit px-3 py-1
+                    flex justify-center items-center gap-1 
+                    border border-gray-200 rounded-4xl">
+                    <span>{emotionsObj[data.emotion].emoji}</span>
+                    <span>{emotionsObj[data.emotion].label}</span>
+                </div>
+            </div> 
+            <p className="px-2 truncate">
+                {data.content}
+            </p>
             <span 
                 className="
                     p-1
