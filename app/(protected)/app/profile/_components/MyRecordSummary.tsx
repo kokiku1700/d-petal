@@ -41,15 +41,17 @@ export default async function MyRecordSummary () {
         <section 
             className="
                 flex flex-col
-                w-[70%] p-2
+                w-full p-2
                 rounded-xl
                 border border-gray-400
-                bg-white">
+                bg-white
+                lg:w-[70%]">
             <h1 
                 className="
-                    pl-5 py-2 
-                    text-xl font-bold 
-                    border-b border-gray-300">
+                    pl-5 py-1 
+                    text-lg font-bold 
+                    border-b border-gray-300
+                    lg:py-2 lg:text-xl">
                 내 기록
             </h1>
             <div className="w-full h-full flex">    

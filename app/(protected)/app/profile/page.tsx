@@ -18,10 +18,15 @@ export default async function Profile () {
         // 나머지 MyInfo, MyRecordsummary는 서버 컴포넌트로 유지했다.
         <main 
             className="
-                w-[70%] p-2 mx-auto
-                flex flex-col gap-2">
+                w-[95%] p-2 mx-auto
+                flex flex-col gap-2
+                xl:w-[85%]
+                2xl:w-[75%]">
             <ProfileEditController user={user}>
-                <div className="flex gap-2">
+                <div 
+                    className="
+                        flex flex-col gap-2
+                        lg:flex-row">
                     <MyInfo user={user} />
                     <MyRecordSummary />
                 </div>

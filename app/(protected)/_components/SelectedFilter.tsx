@@ -26,10 +26,12 @@ export default function SelectedFilter () {
             </li>
             <li 
                 className="
+                    hidden
                     w-full py-1
                     text-center 
                     border border-gray-200
-                    bg-white/80 rounded-lg">                
+                    bg-white/80 rounded-lg
+                    lg:block">                
                 <label>날짜</label>
                 <span className="mx-1">:</span>
                 <span className="text-pink-200">

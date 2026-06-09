@@ -43,16 +43,20 @@ export default function CategoriesEdit () {
             <header 
                 className="
                     flex justify-between items-center
-                    w-full pl-5 py-2 
-                    border-b border-gray-300">
-                <h1 className="text-xl font-bold">
+                    w-full pl-5 py-1 
+                    border-b border-gray-300
+                    lg:py-2 ">
+                <h1 
+                    className="
+                        text-lg font-bold 
+                        lg:text-xl">
                     카테고리 수정
                 </h1>
-                <span className="w-[15%]">
+                <span className="w-[30%] lg:w-[15%]">
                     <Button type="submit" object="저장" variant="submit" />
                 </span>
             </header>
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row">
                 <ul 
                     className="
                         basis-2/5 p-2
@@ -69,9 +73,14 @@ export default function CategoriesEdit () {
                     ))}
                 </ul>
                 <div className="basis-3/5 p-2 flex flex-col gap-2">
-                    <div className="flex items-center">
+                    <div className="flex flex-col items-center lg:flex-row">
                         <div className="w-full flex flex-col gap-3">
-                            <div className="w-full flex items-center gap-2">
+                            <div 
+                                className="
+                                    w-full flex items-center gap-2
+                                    mx-auto
+                                    md:w-[70%]
+                                    lg:w-full">
                                 <label className="font-semibold whitespace-nowrap">
                                     카테고리 이름
                                 </label>
@@ -86,7 +95,7 @@ export default function CategoriesEdit () {
                                 className="min-h-16 p-5">
                                 {category}
                             </output>
-                            <p>※투명도가 적용된 상태입니다.</p>
+                            <p className="pl-2">※투명도가 적용된 상태입니다.</p>
                         </div>
                         
                         <div className="w-full flex flex-col items-center text-center gap-1">

@@ -42,13 +42,18 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
         <section 
             className="
                 relative
-                flex justify-around items-center
-                w-full p-2
-                rounded-xl
-                border border-gray-400">
-            <div className="relative w-[15%]">
+                grid grid-cols-2 justify-around items-center
+                w-full p-2 rounded-xl
+                border border-gray-400
+                md:flex">
+            <div 
+                className="
+                    relative
+                    w-[50%] mx-auto 
+                    md:w-[15%]">
                 <div 
                     className="
+                        relative w-full
                         rounded-full aspect-square
                         border border-black 
                         bg-white
@@ -58,7 +63,7 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                                 ? user.user_profile_image 
                                 : profile} 
                         alt="프로필 이미지" 
-                        width={100} height={100}
+                        fill
                         className="w-full object-cover"/>
                 </div>
                 <Image 
@@ -66,10 +71,12 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                     alt="프로필 이미지 수정" 
                     onClick={() => {openEditModal(); setSelectedTab("image");}}
                     className="
-                        w-[20%] p-2
+                        w-[30%] p-2
                         shadow-md rounded-full bg-white
-                        absolute bottom-3 right-3
-                        cursor-pointer"/>
+                        absolute bottom-2 right-2
+                        cursor-pointer
+                        lg:w-[25%]
+                        xl:w-[20%] xl:bottom-3 xl:right-3"/>
             </div>
             <div 
                 className="
@@ -93,23 +100,29 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
             </div>
             <div 
                 className="
-                    absolute top-5 right-10
-                    flex gap-2">
+                    col-span-2
+                    flex gap-2 justify-end 
+                    py-2
+                    md:absolute md:top-5 md:right-10">
                 <span 
                     onClick={openEditModal}
                     className="
-                        p-2 rounded-xl bg-white
+                        p-1 rounded-xl bg-white
+                        text-xs
                         border border-gray-400
-                        cursor-pointer">
+                        cursor-pointer
+                        md:p-1">
                     프로필 수정
                 </span>
                 <span 
                     onClick={handleLogOut}
                     className="
-                        p-2 rounded-xl bg-white
+                        p-1 rounded-xl bg-white
+                        text-xs
                         border border-gray-400
                         text-red-500
-                        cursor-pointer">
+                        cursor-pointer
+                        md:p-1">
                     로그아웃
                 </span>
             </div>    

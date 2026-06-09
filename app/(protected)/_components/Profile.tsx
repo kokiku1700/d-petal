@@ -17,11 +17,11 @@ export default function Profile () {
         <aside 
             className="
                 w-full flex flex-col gap-2
-                py-3">
+                py-2">
             <div 
                 className="
                     flex justify-around items-center
-                    border-b border-gray-200 p-3">
+                    border-b border-gray-200 px-3 py-2">
                 <div 
                     className="
                         relative
@@ -44,7 +44,7 @@ export default function Profile () {
                     <p className="text-center">{`총 ${postSum}개의 기록`}</p>
                 </div>
             </div>
-            <div className="text-center p-3">
+            <div className="text-center p-2">
                 <p>문구가 들어갈 예정입니다.</p>
             </div>   
         </aside>

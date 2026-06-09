@@ -17,15 +17,17 @@ export default function MyInfo ( { user }: Props ) {
         <section 
             className="
                 flex flex-col
-                w-[30%] p-2
+                w-full p-2
                 rounded-xl
                 border border-gray-400
-                bg-white">
+                bg-white
+                lg:w-[30%]">
             <h1 
                 className="
-                    pl-5 py-2 
-                    text-xl font-bold 
-                    border-b border-gray-300">
+                    pl-5 py-1 
+                    text-lg font-bold 
+                    border-b border-gray-300
+                    lg:py-2 lg:text-xl">
                 내 정보
             </h1>
             <div 
@@ -37,11 +39,19 @@ export default function MyInfo ( { user }: Props ) {
                         key={idx}
                         className="
                             grid grid-cols-[100px_1fr]
-                            items-center gap-x-6 py-1">
-                        <h6 className="text-md text-gray-500">
+                            items-center gap-x-6 
+                            overflow-hidden
+                            lg:py-1">
+                        <h6 
+                            className="
+                                text-sm text-gray-500 
+                                lg:text-base">
                             {info.title}
                         </h6>
-                        <span className="text-md font-medium text-gray-900">
+                        <span 
+                            className="
+                                text-sm font-medium text-gray-900 
+                                lg:text-base">
                             {info.value}
                         </span>   
                     </div>
