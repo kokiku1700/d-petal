@@ -39,7 +39,7 @@ export default function RecordChart () {
 
         data.heatmap.forEach(heatmap => {
             const date = heatmap.date.slice(0, 10);
-            map.set(date, (map.get(date) || 0) + 1);
+            map.set(date, Number(heatmap.count));
         });
 
         for ( let d = new Date(start); d <= end; d.setDate(d.getDate() + 1) ) {

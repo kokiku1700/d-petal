@@ -1,10 +1,13 @@
+"use client";
+
 import { SessionUser } from "@/lib/getSessionUser"
 
 type Props = {
     user: SessionUser | null;
+    openDeleteModal: () => void;
 };
 
-export default function MyInfo ( { user }: Props ) {
+export default function MyInfo ( { user, openDeleteModal }: Props ) {
     const myInfo = [
         { title: "이름", value: user?.user_name },
         { title: "닉네임", value: user?.user_nickname },
@@ -22,14 +25,28 @@ export default function MyInfo ( { user }: Props ) {
                 border border-gray-400
                 bg-white
                 lg:w-[30%]">
-            <h1 
+            <div 
                 className="
-                    pl-5 py-1 
-                    text-lg font-bold 
-                    border-b border-gray-300
-                    lg:py-2 lg:text-xl">
-                내 정보
-            </h1>
+                    flex justify-between items-center
+                    border-b border-gray-300">
+                <h1 
+                    className="
+                        pl-5 py-1 
+                        text-lg font-bold 
+                        lg:py-2 lg:text-xl">
+                    내 정보
+                </h1>
+                <button 
+                    onClick={openDeleteModal}
+                    className="
+                        mr-1 py-1 px-1 
+                        text-xs text-red-500
+                        cursor-pointer
+                        hover:text-red-700
+                        lg:py-2 lg:text-sm">
+                    회원탈퇴
+                </button>
+            </div>
             <div 
                 className="
                     w-[90%] mx-auto pt-2

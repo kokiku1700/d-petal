@@ -14,16 +14,22 @@ export default function DateAndCategory ({ write, onChange }: WriteProps) {
     };
 
     return (
-        <div className="w-full flex px-6 py-3 border-b border-gray-300">
+        <div 
+            className="
+                w-full px-6 py-3 
+                flex flex-col gap-3
+                border-b border-gray-300
+                lg:flex-row lg:gap-0">
             <div 
                 className="
-                    basis-1/2 pr-4 
-                    border-r border-gray-300
-                    flex justify-around items-center">
+                    pr-4 
+                    flex flex-col justify-around items-center gap-2
+                    lg:flex-row lg:gap-0 lg:basis-1/2
+                    lg:border-r lg:border-gray-300
+                    lg:gap-0">
                 <label  
                     className="
-                        
-                        basis-1/4 whitespace-nowrap">
+                        basis-1/4 whitespace-nowrap font-semibold">
                     날짜
                 </label>
                 <Input 
@@ -33,8 +39,9 @@ export default function DateAndCategory ({ write, onChange }: WriteProps) {
             <div 
                 className="
                     basis-1/2
-                    flex justify-center items-center">
-                <label className="basis-1/4 text-center">
+                    flex flex-col justify-center items-center gap-2
+                    lg:flex-row lg:gap-0">
+                <label className="basis-1/4 text-center font-semibold">
                     항목
                 </label>
                 <div className="flex flex-wrap justify-center gap-3">

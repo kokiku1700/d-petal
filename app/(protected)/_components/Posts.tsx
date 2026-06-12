@@ -42,7 +42,7 @@ export default function Posts () {
                 </p>
             )}
             
-            {pagination && pagination.totalPages > 1 && (
+            {pagination && pagination.totalPages > 0 && (
                 <div className="w-full flex gap-2 items-center m-2">
                     <button
                         type="button"

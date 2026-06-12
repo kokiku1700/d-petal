@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 
 export const usePostQuery = (id: string) => {
     return useQuery<Post>({
-        queryKey: ["post"],
+        queryKey: ["post", id],
         queryFn: async () => {
             const res = await fetch(`/api/posts/${id}`, {
                 method: "GET",

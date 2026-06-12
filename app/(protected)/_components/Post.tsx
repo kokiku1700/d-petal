@@ -83,8 +83,11 @@ export default function Post ({ data }: Props) {
                 className="
                     flex justify-between items-center px-2
                     lg:flex-col lg:items-start">
-                <h1 className="text-xl font-bold truncate">
-                    {data.title}
+                <h1 
+                    className={`
+                        text-xl font-bold truncate
+                        ${data.title.trim() === "" ? "text-gray-300" : ""}`}>
+                    {data.title.trim() === "" ? "제목 없음" : data.title}
                 </h1>
                 <div 
                     className="
@@ -95,8 +98,11 @@ export default function Post ({ data }: Props) {
                     <span>{emotionsObj[data.emotion].label}</span>
                 </div>
             </div> 
-            <p className="px-2 truncate">
-                {data.content}
+            <p 
+                className={`
+                    px-2 truncate
+                    ${data.content.trim() === "" ? "text-gray-300" : ""}`}>
+                {data.content.trim() === "" ? "내용 없음" : data.content}
             </p>
             <span 
                 className="

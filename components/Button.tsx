@@ -7,6 +7,7 @@ type Props = {
     color?: string;
     onClick?: () => void;
     style?: React.CSSProperties;
+    disabled?: boolean;
 };
 
 type ButtonStyle = React.CSSProperties & {
@@ -22,7 +23,7 @@ const styles = {
     cancel: "w-full px-2 py-1.5 rounded-lg bg-[#eee] hover:bg-[#ddd]",
 } as const;
 
-export default function Button ({ type, object, variant, onClick, color, style }: Props) {
+export default function Button ({ type, object, variant, onClick, color, style, disabled }: Props) {
     const buttonStyle: ButtonStyle = {
         ...style,
         "--category-color": `${color}40`
@@ -37,7 +38,8 @@ export default function Button ({ type, object, variant, onClick, color, style }
                 ${styles[variant]}
                 text-[#3b2f4a]
                 cursor-pointer whitespace-nowrap   
-                transition-color duration-300`}>
+                transition-color duration-300`}
+            disabled={disabled}>
             {object}
         </button>
     )

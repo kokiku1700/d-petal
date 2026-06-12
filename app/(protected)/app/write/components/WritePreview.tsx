@@ -30,7 +30,12 @@ export default function WritePreview ({ write }: Props) {
                 w-full p-5
                 rounded-lg shadow-sm shadow-gray-200 
                 bg-white">
-            <h1 className="pl-3 pb-2 border-b border-gray-200">미리보기</h1>
+            <h1 
+                className="
+                    pl-3 pb-2 border-b border-gray-200
+                    font-semibold">
+                미리보기
+            </h1>
             <div className="flex justify-center pt-2">
                 <Post data={previewData} />
             </div>

@@ -10,7 +10,7 @@ export default function WriteContent ({ write, onChange }: WriteProps) {
                 rounded-lg shadow-sm shadow-gray-200 
                 bg-white">
             <div>
-                <h3>제목</h3>
+                <h3 className="font-semibold">제목</h3>
                 <Input 
                     name="title" type="text" value={write.title}
                     variant="main"
@@ -22,7 +22,7 @@ export default function WriteContent ({ write, onChange }: WriteProps) {
                     }} />
             </div>
             <div>
-                <h3>내용</h3>
+                <h3 className="font-semibold">내용</h3>
                 <textarea 
                     value={write.content}
                     onChange={(e) => {

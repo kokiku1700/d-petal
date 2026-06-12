@@ -52,19 +52,29 @@ export default function Write () {
     return (
         <main 
             className="
-                w-[90%] mx-auto
-                ">
+                w-[95%] mx-auto
+                xl:w-[90%]">
             <h1 
                 className="
-                    w-[15%] 
+                    w-[60%] 
                     mx-auto pt-5 pb-2 
                     border-b border-gray-200
-                    text-center
-                    text-3xl font-medium">
+                    text-center text-3xl font-medium
+                    lg:w-[15%]">
                 기록 남기기
             </h1>
-            <p className="pt-2 pb-5 text-center">하루의 한 조각을 가볍게 남겨보세요.</p>
-            <form onSubmit={onSubmit} className="w-full flex gap-5">
+            <p 
+                className="
+                    pt-2 pb-5 
+                    text-center text-sm
+                    xl:text-lg">
+                하루의 한 조각을 가볍게 남겨보세요.
+            </p>
+            <form 
+                onSubmit={onSubmit} 
+                className="
+                    w-full flex flex-col gap-5
+                    xl:flex-row">
                 <div 
                     className="
                         basis-2/3

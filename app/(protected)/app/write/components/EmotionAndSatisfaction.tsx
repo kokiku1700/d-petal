@@ -22,14 +22,24 @@ export default function EmotionAndSatisfaction ({ write, onChange }: WriteProps)
     };
 
     return (
-        <div className="flex items-center p-3">
+        <div 
+            className="
+                flex flex-col items-center gap-3
+                p-3
+                lg:flex-row lg:gap-0">
             <div 
                 className="
-                    basis-7/10 pr-4 
-                    border-r border-gray-300
-                    flex justify-around items-center">
-                <label className="text-center">감정</label>
-                <div className="flex flex-wrap gap-2">
+                    pr-4 
+                    flex flex-col justify-around items-center gap-2
+                    lg:flex-row lg:gap-0 lg:basis-7/10 lg:border-r lg:border-gray-300">
+                <label 
+                    className="text-center whitespace-nowrap font-semibold">
+                    감정
+                </label>
+                <div 
+                    className="
+                        flex flex-wrap justify-center gap-2
+                        lg:justify-none">
                     {emotionsArr.map(emotion => (
                         <Button 
                             key={emotion.label}
@@ -49,8 +59,11 @@ export default function EmotionAndSatisfaction ({ write, onChange }: WriteProps)
                 </div>
 
             </div>
-            <div className="basis-3/10 flex justify-around items-center">
-                <label>만족도</label>
+            <div 
+                className="
+                    flex flex-col justify-around items-center gap-2
+                    lg:flex-row lg:gap-0 lg:basis-3/10">
+                <label className="font-semibold">만족도</label>
                 <div>
                     {stars.map(star => {
                         const filled = star <= write.satisfaction;

@@ -43,7 +43,7 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
             className="
                 relative
                 grid grid-cols-2 justify-around items-center
-                w-full p-2 rounded-xl
+                w-full p-2 rounded-xl bg-white
                 border border-gray-400
                 md:flex">
             <div 
@@ -111,7 +111,10 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                         text-xs
                         border border-gray-400
                         cursor-pointer
-                        md:p-1">
+                        transition duration-400
+                        hover:ring
+                        hover:ring-gray-400
+                        md:p-2 md:text-sm">
                     프로필 수정
                 </span>
                 <span 
@@ -122,7 +125,10 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                         border border-gray-400
                         text-red-500
                         cursor-pointer
-                        md:p-1">
+                        transition duration-400
+                        hover:ring
+                        hover:ring-gray-400
+                        md:p-2 md:text-sm">
                     로그아웃
                 </span>
             </div>    
