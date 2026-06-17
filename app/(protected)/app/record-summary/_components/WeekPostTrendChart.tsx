@@ -28,18 +28,25 @@ export default function WeekPostTrendChart ({ data }: Props) {
 
     return (
         <div className="w-full">
-            <div className="flex items-end gap-2 pl-2">
-                <h3 className="text-lg font-semibold">
+            <div 
+                className="
+                    flex flex-col items-start pl-2
+                    lg:flex-row lg:items-end lg:gap-2">
+                <h3 
+                    className="
+                        text-base font-semibold
+                        lg:text-lg">
                     기록
                 </h3>
-                <p className="text-sm text-gray-400">
+                <p className="text-xs text-gray-400 lg:text-sm">
                     지난 7일 동안 쌓인 기록의 흐름을 보여드려요.
                 </p>
             </div>
             <p 
                 className="
-                    text-lg font-semibold text-center text-gray-800 italic 
-                    p-2">
+                    text-base font-semibold text-center text-gray-800 italic 
+                    p-2
+                    lg:text-lg">
                 {weekTrendInsight}
             </p>
             <div 

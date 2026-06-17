@@ -23,11 +23,17 @@ export default function WeekCategroySummaryDetail ({ data }: Props) {
 
     return (
         <div className="w-full">
-            <div className="flex items-end gap-2 p-2">
-                <h3 className="text-lg font-semibold">
+            <div 
+                className="
+                    flex flex-col items-start pl-2
+                    lg:flex-row lg:items-end lg:gap-2">
+                <h3 
+                    className="
+                        text-base font-semibold
+                        lg:text-lg">
                     카테고리
                 </h3>
-                <p className="text-sm text-gray-400">
+                <p className="text-xs text-gray-400 lg:text-sm">
                     기록이 어떤 영역에 집중되었는지 보여드려요.
                 </p>
             </div>

@@ -141,66 +141,69 @@ export default function RecordChart () {
                 </svg>
                 <h1 className="text-xl">기록 차트</h1>
             </div>
-            <div className="flex flex-col items-center p-1">
-                <div className="flex pb-2">
-                    <div className="w-6 pr-2" />
-                    <div className="flex gap-1">
-                        {weeks.map((week, i) => {
-                            const firstDate = week[0];
-                            const currentMonth = new Date(firstDate.date).getMonth();
-                            const prevMonth = i > 0 ? new Date(weeks[i - 1][0].date).getMonth() : null;
-                            const showMonth = i === 0 || currentMonth !== prevMonth;
+            <div className="w-full overflow-x-auto p-1">
+                <div className="w-max mx-auto">
+                    <div className="flex pb-2">
+                        <div className="w-6 pr-2" />
+                        <div className="flex gap-1">
+                            {weeks.map((week, i) => {
+                                const firstDate = week[0];
+                                const currentMonth = new Date(firstDate.date).getMonth();
+                                const prevMonth = i > 0 ? new Date(weeks[i - 1][0].date).getMonth() : null;
+                                const showMonth = i === 0 || currentMonth !== prevMonth;
 
-                            return (
-                                <div key={i} className="w-3 text-xs leading-none whitespace-nowrap">
-                                    {showMonth ? `${currentMonth + 1}월` : ""}
+                                return (
+                                    <div key={i} className="w-3 text-xs leading-none whitespace-nowrap">
+                                        {showMonth ? `${currentMonth + 1}월` : ""}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="flex">
+                        <div 
+                            className="
+                                flex flex-col gap-1 
+                                pr-2
+                                text-xs text-gray-500">
+                            {weekDays.map((day, i) => (
+                                <span key={i} className="h-3 flex items-center">
+                                    {i % 2 === 0 ? day : ""}
+                                </span>
+                            ))}
+                        </div>   
+                        <div className="flex gap-1">
+                            {weeks.map((week, weekIndex) => (
+                                <div
+                                    key={weekIndex}
+                                    className="flex flex-col gap-1">
+                                    {week.map(day => (
+                                        <div 
+                                            key={day.date}
+                                            onMouseEnter={e => setHovered({
+                                                date: day.date,
+                                                count: day.count,
+                                                x: e.clientX,
+                                                y: e.clientY,
+                                            })}
+                                            onMouseLeave={() => setHovered(null)}
+                                            onClick={() => {handleDateFilter(day.date)}}
+                                            className={`
+                                                w-3 h-3 rounded-sm cursor-pointer
+                                                ${day.date === selectedDate ? "ring-2 ring-black" : ""}`}
+                                            style={{ backgroundColor: day.empty ? "#ebedf0 " : getColor(day.count)}}/>
+                                            
+                                    ))}
                                 </div>
-                            )
-                        })}
+                                
+                            ))}
+                        </div>
+                        {hovered && <ToolTip data={hovered} />}
                     </div>
-                </div>
-
-                <div className="flex">
-                    <div 
-                        className="
-                            flex flex-col gap-1 
-                            pr-2
-                            text-xs text-gray-500">
-                        {weekDays.map((day, i) => (
-                            <span key={i} className="h-3 flex items-center">
-                                {i % 2 === 0 ? day : ""}
-                            </span>
-                        ))}
-                    </div>   
-                    <div className="flex gap-1">
-                        {weeks.map((week, weekIndex) => (
-                            <div
-                                key={weekIndex}
-                                className="flex flex-col gap-1">
-                                {week.map(day => (
-                                    <div 
-                                        key={day.date}
-                                        onMouseEnter={e => setHovered({
-                                            date: day.date,
-                                            count: day.count,
-                                            x: e.clientX,
-                                            y: e.clientY,
-                                        })}
-                                        onMouseLeave={() => setHovered(null)}
-                                        onClick={() => {handleDateFilter(day.date)}}
-                                        className={`
-                                            w-3 h-3 rounded-sm cursor-pointer
-                                            ${day.date === selectedDate ? "ring-2 ring-black" : ""}`}
-                                        style={{ backgroundColor: day.empty ? "#ebedf0 " : getColor(day.count)}}/>
-                                        
-                                ))}
-                            </div>
-                            
-                        ))}
-                    </div>
-                    {hovered && <ToolTip data={hovered} />}
                 </div>
             </div>
+            
         </section>
     )
 }

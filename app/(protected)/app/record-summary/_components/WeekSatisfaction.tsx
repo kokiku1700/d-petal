@@ -28,15 +28,25 @@ export default function WeekSatisfactionSummaryDetail ({ data }: Props) {
 
     return (
         <div className="w-full">
-            <div className="flex items-end gap-2 pl-2">
-                <h3 className="text-lg font-semibold">
+            <div 
+                className="
+                    flex flex-col items-start pl-2
+                    lg:flex-row lg:items-end lg:gap-2">
+                <h3 
+                    className="
+                        text-base font-semibold
+                        lg:text-lg">
                     만족도
                 </h3>
-                <p className="text-sm text-gray-400">
+                <p className="text-xs text-gray-400 lg:text-sm">
                     기록 속 만족도를 한눈에 확인해보세요.
                 </p>
             </div>
-            <p className="text-lg font-semibold text-center text-gray-800 italic p-2">
+            <p 
+                className="
+                    text-base font-semibold text-center text-gray-800 italic 
+                    p-2
+                    lg:text-lg">
                 {weekSatisfaction}
             </p>
             <div 

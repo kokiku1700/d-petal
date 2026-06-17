@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Profile from "./Profile";
-import RecordChart from "./RecordChart";
-import RecordSummary from "./RecordSummary";
 import Categories from "./Categories";
 import Posts from "./Posts";
 import CategoriesChart from "./CategoriesChart";
 import CategoriesTop3 from "./CategoriesTop3";
 import SelecedFilter from "./SelectedFilter";
 import TextFilter from "./TextFilter";
+import Record from "./Record";
 
 
 export default function Main () {
@@ -19,6 +18,7 @@ export default function Main () {
                     flex flex-col gap-3
                     lg:grid lg:grid-cols-2
                     2xl:flex 2xl:flex-row">
+                {/* 프로필 */}
                 <Link href="/app/profile" 
                     className="
                         basis-2/10
@@ -29,34 +29,22 @@ export default function Main () {
                         hover:ring-pink-200">
                     <Profile />
                 </Link>
-                <Link href="/app/record-summary" 
-                    className="
-                        hidden basis-3/10
-                        border border-gray-200
-                        rounded-lg bg-white/80 
-                        transition duration-300
-                        hover:ring
-                        hover:ring-purple-200
-                        lg:block">
-                    <RecordSummary />
-                </Link>
-                <div
-                    className="
-                        hidden basis-5/10
-                        border border-gray-200
-                        rounded-lg bg-white/80
-                        lg:block
-                        lg:col-span-2">
-                    <RecordChart />
-                </div>
+                {/* 
+                    기록 요약 및 기록 차트(잔디) 
+                    현재 컴포넌트는 서버 컴포넌트여서 useState를 사용하지 못한다. 
+                    모바일에서 토글 기능을 넣기 위해 한 번 더 감쌌다.
+                */}
+                <Record />
             </div>
             <div 
                 className="
                     grid grid-cols-2 gap-2 items-center
                     xl:flex">
+                {/* 카테고리, 날짜 필터뷰 */}
                 <div className="basis-1/5 order-1">
                     <SelecedFilter />
                 </div>
+                {/* 기록 검색 */}
                 <div 
                     className="
                         basis-3/5 px-[10%]
@@ -64,6 +52,7 @@ export default function Main () {
                         xl:order-2">
                     <TextFilter />
                 </div>
+                {/* 기록 작성 */}
                 <div className="basis-1/5 order-2 xl:order-3">
                     <Link 
                         href="/app/write"
@@ -85,12 +74,15 @@ export default function Main () {
                 className="
                     flex flex-col gap-2
                     xl:flex-row">
+                {/* 카테고리 목록 */}
                 <div className="basis-1/10">
                     <Categories />
                 </div>
+                {/* 기록 목록 */}
                 <div className="basis-7/10">
                     <Posts />
                 </div>
+                {/* 기록 차트(도넛 차트, top3) */}
                 <div 
                     className="
                         hidden flex flex-col gap-2 basis-2/10
