@@ -20,7 +20,7 @@ const styles = {
     category: "px-3 py-2 rounded-lg bg-white hover:bg-[var(--category-color)]",
     emotion: "px-2 py-1.5 rounded-lg bg-white hover:bg-gray-100",
     preview: "w-full px-2 py-1.5 rounded-lg bg-[#d9d4f4] hover:bg-[#c9c1ee]",
-    cancel: "w-full px-2 py-1.5 rounded-lg bg-[#eee] hover:bg-[#ddd]",
+    cancel: "w-full px-2 py-1.5 text-red-500 rounded-lg bg-[#eee] hover:bg-[#ddd]",
 } as const;
 
 export default function Button ({ type, object, variant, onClick, color, style, disabled }: Props) {
