@@ -32,8 +32,8 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                 // clear를 통해 모든 캐시를 초기화해준다.
                 // queryClient.invalidateQueries({ queryKey: ["me"]});
                 queryClient.clear();
-
                 router.replace("/");
+                router.refresh();
             };
         };  
     };
