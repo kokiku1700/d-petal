@@ -70,7 +70,7 @@ export default function SignInForm ({ onSwitch }: Props) {
             bg-cover bg-center bg-no-repeat
             lg:bg-gradient-to-b lg:from-white lg:to-[#fff6fb]">
             <div className="absolute inset-0 bg-white/50 lg:hidden" />
-            <h1 className="z-10 mb-5 text-5xl text-[#3b2f4a]">
+            <h1 className="z-10 mb-5 text-4xl text-[#3b2f4a]">
                 Sign In
             </h1>
             <form 
@@ -92,6 +92,7 @@ export default function SignInForm ({ onSwitch }: Props) {
             </form>
             <div 
                 className="
+                    w-[75%]
                     z-10 grid grid-cols-1 gap-3
                     px-4
                     sm:grid-cols-2
@@ -106,7 +107,7 @@ export default function SignInForm ({ onSwitch }: Props) {
                             alt={icon.alt}
                             width={200}
                             height={40}
-                            className="w-full h-12 cursor-pointer"/>
+                            className="w-full h-10 cursor-pointer"/>
                     </button>
                 ))}
             </div>
@@ -114,12 +115,12 @@ export default function SignInForm ({ onSwitch }: Props) {
                 className="
                     z-10 w-[80%] border-t
                     md:w-[60%]">
-                <p className="my-2">
+                <p className="my-2 text-sm">
                     아직 계정이 없나요? 
                     <span 
                         onClick={onSwitch}
                         className="
-                            mx-1 text-[#e183c7]
+                            mx-1 text-[#e183c7] text-sm
                             cursor-pointer
                             hover:underline
                             hover:text-[#f70cb4]
@@ -127,12 +128,12 @@ export default function SignInForm ({ onSwitch }: Props) {
                         회원가입
                     </span>
                 </p>
-                <p>
+                <p className="text-sm">
                     로그인이 되지 않나요?
                     <Link 
                         href="/find-password" 
                         className="
-                            mx-1 text-gray-600
+                            mx-1 text-gray-600 text-sm
                             hover:text-gray-300">
                         비밀번호 찾기
                     </Link>

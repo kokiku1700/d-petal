@@ -20,7 +20,7 @@ type Props = {
 };
 
 const styles = {
-    signin: "rounded-lg py-2 px-4",
+    signin: "rounded-lg py-1 px-4",
     signup: "rounded-lg py-1 px-2",
     main: "rounded-lg py-1 px-2 border-1 border-gray-400",
     filter: "rounded-4xl py-2 px-6 ring-2 ring-pink-200 border-none focus:ring-2 focus:ring-pink-400",
@@ -51,7 +51,7 @@ const Input = forwardRef <HTMLInputElement, Props>(
                 onChange={onChange} onKeyDown={onKeyDown} onBlur={onBlur} 
                 className={`
                     w-full
-                    text-xl ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
+                    text-lg ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
                     ${styles[variant]}
                     border-1 border-[#3b2f4a] bg-white
                     focus:outline-none

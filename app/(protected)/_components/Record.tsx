@@ -68,6 +68,7 @@ export default function Record () {
                 className={`
                     ${open ? "block" : "hidden"}
                     basis-5/10
+                    overflow-y-scroll
                     border border-gray-200
                     rounded-lg bg-white/80
                     lg:block

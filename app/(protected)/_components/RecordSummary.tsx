@@ -56,7 +56,9 @@ export default function RecordSummary () {
                         <rect x="36" y="38" width="6" height="4" fill="#fca5a5" />
                     </g>
                 </svg>
-                <h1 className="text-xl">오늘 기록 요약</h1>
+                <h1 className="text-lg 3xl:text-2xl 3xl:text-semibold">
+                    오늘 기록 요약
+                </h1>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -86,11 +88,10 @@ export default function RecordSummary () {
                             backdrop-blur-sm
                             shadow-[0_4px_14px_rgba(216,180,254,0.12)]">
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-200 to-pink-200" />
-                        <p className="text-sm text-gray-400 whitespace-nowrap">{card.sub}</p>
-                        <div className="flex gap-2">
-                            <span>{card.label}</span>
-                            <span className="mx-1">:</span>
-                            <span>{card.value}</span>
+                        <p className="text-xs text-gray-400 whitespace-nowrap">{card.sub}</p>
+                        <div className="flex flex-col items-center justify-center gap-2">
+                            <span className="text-xs 2xl:text-sm">{card.label}</span>
+                            <span className="text-xs 2xl:text-sm">{card.value}</span>
                         </div>
                     </div>
                 ))}

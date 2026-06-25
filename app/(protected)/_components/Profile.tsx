@@ -38,14 +38,17 @@ export default function Profile () {
                         className="w-full object-cover"/>
                 </div>
                 <div className="basis-3/5 flex flex-col gap-3">
-                    <span className="text-lg font-bold text-center">
+                    <span className="text-base font-bold text-center">
                         {me.user.user_nickname}
                     </span>
-                    <p className="text-center">{`총 ${postSum}개의 기록`}</p>
+                    <p className="text-center text-sm">
+                        {`총 ${postSum}개의 기록`}
+                    </p>
                 </div>
             </div>
-            <div className="text-center p-2">
-                <p>문구가 들어갈 예정입니다.</p>
+            <div 
+                className="text-center p-2 truncate">
+                <p className="italic">{me.user.user_bio ? me.user.user_bio : "나를 표현해보세요."}</p>
             </div>   
         </aside>
     )

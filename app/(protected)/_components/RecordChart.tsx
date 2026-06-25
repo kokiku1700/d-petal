@@ -139,7 +139,7 @@ export default function RecordChart () {
                             width="6" height="6" rx="2" fill={cell.c} />
                     ))}
                 </svg>
-                <h1 className="text-xl">기록 차트</h1>
+                <h1 className="text-lg 3xl:text-2xl 3xl:text-semibold">기록 차트</h1>
             </div>
             <div className="w-full overflow-x-auto p-1">
                 <div className="w-max mx-auto">

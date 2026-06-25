@@ -26,11 +26,12 @@ export default function CategoriesChart () {
     return (
         <figure 
             className="
-                bg-white
+                bg-white p-2
                 shadow-purple-200
                 rounded-lg shadow-md">
             <h1 className="text-center py-2">카테고리 비율</h1>
-            <div style={{ width: "100%", height: 260 }}>
+            <div 
+                className="w-[80%] h-[260px] mx-auto">
                 <ResponsiveContainer>
                     <PieChart>
                         <Pie
@@ -38,7 +39,24 @@ export default function CategoriesChart () {
                             dataKey="value"
                             nameKey="name"
                             shape={PieSliceShape}
-                            label={({ name }) => name}
+                            label={({ cx, cy, midAngle, outerRadius, name }) => {
+                                const RADIAN = Math.PI / 180;
+
+                                const radius = outerRadius * 1.05;
+
+                                const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                
+                                return (
+                                    <text x={x} y={y} fill="#555"
+                                    textAnchor={x > cx ? "start" : "end"}
+                                    dominantBaseline="central"
+                                    fontSize={12}>
+                                        {name}
+                                    </text>
+                                )
+
+                            }}
                             labelLine={false}
                             style={{ outline: "none" }}
                             outerRadius="80%"
