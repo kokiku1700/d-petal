@@ -39,7 +39,7 @@ export default function CategoriesChart () {
                             dataKey="value"
                             nameKey="name"
                             shape={PieSliceShape}
-                            label={({ cx, cy, midAngle, outerRadius, name }) => {
+                            label={({ cx = 0, cy = 0, midAngle = 0, outerRadius = 0, name }) => {
                                 const RADIAN = Math.PI / 180;
 
                                 const radius = outerRadius * 1.05;
