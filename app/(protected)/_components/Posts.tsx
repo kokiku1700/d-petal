@@ -3,6 +3,7 @@
 import { useFilterStore } from "@/hooks/useFilterStore";
 import { usePostsQuery } from "@/hooks/usePostsQuery"
 import Post from "./Post";
+import Spinner from "@/components/Spinner";
 
 export default function Posts () {
     const { data, isLoading, isError } = usePostsQuery();
@@ -12,7 +13,18 @@ export default function Posts () {
     const setPage = useFilterStore(state => state.setPage);
 
     if ( isLoading ) {
-        return <p className="w-full text-center mt-5">기록을 불러오는 중입니다.</p>
+        return (
+            <div 
+                className="
+                    w-full
+                    flex flex-col justify-center items-center">
+                <Spinner />
+                <p className="w-full text-center mt-5">
+                    기록을 불러오는 중입니다.
+                </p>
+            </div>
+
+        )
     };
 
     if ( isError ) {
