@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import Spinner from "@/components/Spinner";
+import { signInSchema } from "@/schemas/auth/sign-in.schema";
 
 type Props = {
     onSwitch: () => void;
@@ -25,11 +27,21 @@ export default function SignInForm ({ onSwitch }: Props) {
 	];
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [status, setStatus] = useState<boolean | null>(null);
+    const [errorMessage, setErrorMessage] = useState("");
     const router = useRouter();
     const queryClient = useQueryClient();
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const result = signInSchema.safeParse({email, password});
+
+        if ( !result.success ) {
+            setStatus(false);
+            setErrorMessage("이메일 혹은 비밀번호를 확인해주세요.");
+            return;
+        } 
 
         const res = await fetch("/api/sign-in", {
             method: "POST",
@@ -40,11 +52,17 @@ export default function SignInForm ({ onSwitch }: Props) {
             }),
         });
 
-        if ( res.ok ) {
+        const data = await res.json();
+
+        if ( data.ok ) {
+            setStatus(true);
             await queryClient.invalidateQueries({ queryKey: ["me"]});
             router.replace("/app");
             router.refresh();
-        }
+        } else {
+            setStatus(false);
+            setErrorMessage(data.message);
+        };
     };
 
     // 소셜 로그인 함수
@@ -79,24 +97,35 @@ export default function SignInForm ({ onSwitch }: Props) {
                     w-[80%] z-10 
                     flex flex-col justify-center items-center gap-6
                     md:w-[60%]">
-                    <Input 
-                        name="email" value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        type="email" placeholder="이메일" variant="signin"/>
-                    <Input 
-                        name="password" type="password" value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        placeholder="비밀번호" variant="signin"/>
+                <Input 
+                    name="email" value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    type="email" placeholder="이메일" variant="signin"/>
+                <Input 
+                    name="password" type="password" value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    placeholder="비밀번호" variant="signin"/>
+                
+                {status === null ? null 
+                    : status === true
+                    ? <Spinner />
+                    : <p 
+                        className="text-sm text-red-500">
+                        {errorMessage}
+                      </p>
+                }
                 <Button 
-                    type="submit" object="로그인" variant="submit"/>
+                    type="submit" object="로그인" variant="submit"
+                    disabled={status ? true : false}/>
             </form>
             <div 
                 className="
-                    w-[75%]
+                    w-[50%]
                     z-10 grid grid-cols-1 gap-3
                     px-4
-                    sm:grid-cols-2
-                    lg:grid-cols-1 
+                    sm:grid-cols-2 sm:w-[60%]
+                    lg:grid-cols-1 lg:w-[70%]
+                    xl:w-[75%]
                     2xl:grid-cols-2">
                 {socialIcons.map((icon, i) => (
                     <button 

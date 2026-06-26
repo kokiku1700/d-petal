@@ -38,7 +38,10 @@ export default function Button ({ type, object, variant, onClick, color, style, 
                 ${styles[variant]}
                 text-[#3b2f4a]
                 cursor-pointer whitespace-nowrap   
-                transition-color duration-300`}
+                transition-color duration-300
+                disabled:bg-gray-300
+                disabled:text-white
+                disabled:cursor-default`}
             disabled={disabled}>
             {object}
         </button>

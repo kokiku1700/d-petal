@@ -2,9 +2,18 @@ import { sql } from "@/lib/sql";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 import { createSessionToken, sha256Hex, SESSION_COOKIE_NAME, sessionCookieOptions } from "@/lib/session";
+import { signInSchema } from "@/schemas/auth/sign-in.schema";
 
 export async function POST ( req: Request ) {
     const { email, password } = await req.json();
+    const result = signInSchema.safeParse({email, password});
+
+    if ( !result.success ) {
+        return NextResponse.json(
+            { ok: false, message: "이메일 혹은 비밀번호를 확인해주세요" },
+            { status: 400 },
+        );
+    };
 
     const rows = await sql`
         select * from users

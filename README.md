@@ -4,7 +4,7 @@ next.js를 활용한 개인 기록 서비스
 
 ## 배포 링크
 
-[d.petal](d-petal.vercel.app)
+[d.petal](https://d-petal.vercel.app)
 
 ## 주요 기능
 
