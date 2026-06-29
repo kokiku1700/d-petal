@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import Spinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { signInSchema } from "@/schemas/auth/sign-in.schema";
 
 type Props = {
@@ -108,7 +108,7 @@ export default function SignInForm ({ onSwitch }: Props) {
                 
                 {status === null ? null 
                     : status === true
-                    ? <Spinner />
+                    ? <LoadingSpinner height="full" />
                     : <p 
                         className="text-sm text-red-500">
                         {errorMessage}
