@@ -4,10 +4,42 @@ import { useMeQuery } from "@/hooks/useMeQuery"
 import Image from "next/image";
 import profileImg from "@/public/profile.png";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
+import Spinner from "@/components/Spinner";
+import Refresh from "@/components/Refresh";
 
 export default function Profile () {
-    const { data: me } = useMeQuery();
-    const { data: categories } = useCategoriesChartQuery(); 
+    const { 
+        data: me, 
+        isLoading: meLoading, 
+        isError: meError,
+        refetch: meRefetch, } = useMeQuery();
+    const { 
+        data: categories, 
+        isLoading: categoriesLoading, 
+        isError: categoriesError,
+        refetch: categoriesRefetch, } = useCategoriesChartQuery(); 
+
+    const handleRefresh = async () => {
+        await Promise.all([
+            meRefetch(), categoriesRefetch()
+        ]);
+    };
+
+    if ( meLoading || categoriesLoading ) {
+        return (
+            <div className=" w-full h-full flex justify-center items-center">
+                <Spinner />
+            </div>
+        )
+    };
+
+    if ( meError || categoriesError ) {
+        return (
+            <div className="w-full h-full flex justify-center items-center">
+                <Refresh onClick={handleRefresh} />
+            </div>
+        )
+    }
 
     if ( !me || !categories ) return null;
     
