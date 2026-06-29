@@ -25,7 +25,7 @@ export default function ProfileImageEdit ( { closeEditModal }: Props ) {
         setPreview(URL.createObjectURL(selectedFile));
     };
 
-    const imageUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    const imageUpdate = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if ( !file ) return;
@@ -50,7 +50,10 @@ export default function ProfileImageEdit ( { closeEditModal }: Props ) {
 
     return (
         <form onSubmit={imageUpdate} className="flex flex-col gap-5">
-            <div className="flex items-center gap-2">
+            <div 
+                className="
+                    flex flex-col items-center gap-2
+                    lg:flex-row">
                 <div 
                     className="
                         w-full flex justify-center
@@ -61,7 +64,7 @@ export default function ProfileImageEdit ( { closeEditModal }: Props ) {
                             src={preview} alt="미리보기" 
                             width={100} height={100} 
                             className="w-full object-cover"/>
-                        : "미리보기"
+                        : <span className="flex justify-center items-center min-h-[150px]">미리보기</span>
                     }
                 </div>
                 <div className="w-full">

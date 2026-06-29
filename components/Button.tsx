@@ -15,7 +15,7 @@ type ButtonStyle = React.CSSProperties & {
 };
 
 const styles = {
-    submit: "w-full px-4 py-1 text-lg rounded-lg bg-[#f3dff0] hover:bg-[#e6cfe1]",
+    submit: "w-full px-4 py-1 rounded-lg bg-[#f3dff0] hover:bg-[#e6cfe1]",
     duplication: "w-full px-2 py-1.5 rounded-lg bg-[#f3dff0] hover:bg-[#e6cfe1]",
     category: "px-3 py-2 rounded-lg bg-white hover:bg-[var(--category-color)]",
     emotion: "px-2 py-1.5 rounded-lg bg-white hover:bg-gray-100",
@@ -36,12 +36,13 @@ export default function Button ({ type, object, variant, onClick, color, style, 
             style={buttonStyle}
             className={`
                 ${styles[variant]}
-                text-[#3b2f4a]
+                text-[#3b2f4a] text-sm
                 cursor-pointer whitespace-nowrap   
                 transition-color duration-300
                 disabled:bg-gray-300
                 disabled:text-white
-                disabled:cursor-default`}
+                disabled:cursor-default
+                lg:text-lg`}
             disabled={disabled}>
             {object}
         </button>

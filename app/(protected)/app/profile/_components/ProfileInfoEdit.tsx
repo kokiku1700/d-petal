@@ -54,25 +54,33 @@ export default function ProfileInfoEdit ({ user, closeEditModal }: Props) {
     return (
         <form onSubmit={onSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
-                <label className="text-lg font-semibold">
+                <label 
+                    className="
+                        text-base font-medium
+                        lg:text-lg">
                     문구
                 </label>
                 <textarea 
                     value={bio}
                     onChange={e => setBio(e.target.value)}
                     className="
-                        p-2
+                        p-2 
+                        text-base
                         rounded-xl border border-gray-600
                         resize-none
                         focus:outline-none
                         focus:ring focus:ring-[#e5c9dd] 
-                        focus:border-[#e5c9dd]" />
+                        focus:border-[#e5c9dd]
+                        lg:text-lg" />
             </div>
             <div className="flex flex-col gap-2">
-                <label className="text-lg font-semibold">
+                <label 
+                    className="
+                        text-base font-medium
+                        lg:text-lg">
                     닉네임
                 </label>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2">
                     <Input 
                         name="nickname" type="text" 
                         value={nickname} 

@@ -51,7 +51,7 @@ const Input = forwardRef <HTMLInputElement, Props>(
                 onChange={onChange} onKeyDown={onKeyDown} onBlur={onBlur} 
                 className={`
                     w-full
-                    text-lg ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
+                    text-base ${name === "date" || name === "month" || name === "year" ? "text-center" : ""}
                     ${styles[variant]}
                     border-1 border-[#3b2f4a] bg-white
                     focus:outline-none
@@ -60,7 +60,8 @@ const Input = forwardRef <HTMLInputElement, Props>(
                     read-only:cursor-default
                     read-only:bg-pink-100/70
                     read-only:text-gray-400
-                    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border p-2`}
+                    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border p-2
+                    lg:text-lg`}
                 placeholder={placeholder}
                 readOnly={readonly}
                 autoComplete="off"

@@ -72,7 +72,10 @@ export default function PasswordEdit ({ user, closeEditModal }: Props) {
                 w-[80%] mx-auto
                 flex flex-col gap-2">
             <div>
-                <label className="text-lg font-medium">
+                <label 
+                    className="
+                        text-base font-medium
+                        lg:text-lg">
                     현재 비밀번호
                 </label>
                 <Input 
@@ -82,7 +85,10 @@ export default function PasswordEdit ({ user, closeEditModal }: Props) {
                     variant="signup"/>
             </div>
             <div>
-                <label className="text-lg font-medium">
+                <label 
+                    className="
+                        text-base font-medium
+                        lg:text-lg">
                     새 비밀번호
                 </label>
                 <Input 
@@ -92,7 +98,10 @@ export default function PasswordEdit ({ user, closeEditModal }: Props) {
                     variant="signup"/>
             </div>
             <div>
-                <label className="text-lg font-medium">
+                <label 
+                    className="
+                        text-base font-medium
+                        lg:text-lg">
                     새 비밀번호 확인
                 </label>
                 <Input 

@@ -32,9 +32,10 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                 bg-black/30">
             <div
                 className="
-                    w-[80%] max-w-4xl p-6
+                    w-[95%] max-w-4xl p-2
                     rounded-xl
-                    bg-white">
+                    bg-white
+                    lg:w-[80%] lg:p-6">
                 <div 
                     className="
                         flex justify-between items-center
@@ -47,8 +48,16 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                         onClick={() => {closeEditModal(); setSelectedTab("info")}}
                         className="cursor-pointer" />  
                 </div>
-                <div className="flex items-center pt-2">
-                    <aside className="basis-2/7">
+                <div 
+                    className="
+                        w-full
+                        flex flex-col items-center pt-2
+                        lg:flex-row">
+                    <aside 
+                        className=" 
+                            w-full flex flex-row
+                            lg:basis-2/7
+                            lg:flex-col">
                         {tabs.map(tab => (
                             <button
                                 key={tab.key} type="button"
@@ -56,9 +65,10 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                                 className={`
                                     relative
                                     w-full mb-2 px-4 py-3 
-                                    text-md font-medium
+                                    text-sm font-medium
                                     rounded-lg 
                                     cursor-pointer
+                                    lg:text-base
                                     ${selectedTab === tab.key 
                                         ? "bg-fuchsia-50 text-fuchsia-700"
                                         : "text-gray-500 hover:bg-gray-50"
@@ -67,7 +77,7 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                                 <span 
                                     className={` 
                                         ${selectedTab === tab.key
-                                            ? "absolute top-0 right-0 p-1 h-full bg-pink-300"
+                                            ? "absolute bottom-0 right-0 p-1 w-full bg-pink-300 lg:top-0 lg:h-full"
                                             : null
                                         }`}/>
                             </button>
