@@ -4,8 +4,8 @@ import { useMeQuery } from "@/hooks/useMeQuery"
 import Image from "next/image";
 import profileImg from "@/public/profile.png";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
-import Spinner from "@/components/Spinner";
 import Refresh from "@/components/Refresh";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function Profile () {
     const { 
@@ -27,9 +27,7 @@ export default function Profile () {
 
     if ( meLoading || categoriesLoading ) {
         return (
-            <div className=" w-full h-full flex justify-center items-center">
-                <Spinner />
-            </div>
+            <LoadingSpinner height="full" />
         )
     };
 

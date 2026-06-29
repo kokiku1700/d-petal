@@ -4,6 +4,8 @@ import { PieChart, Pie, Sector, Tooltip, Legend, ResponsiveContainer, LabelList 
 import type { PieSectorShapeProps } from "recharts";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
 import { useFilterStore } from "@/hooks/useFilterStore";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Refresh from "@/components/Refresh";
 
 type ChartItem = {
     name: string;
@@ -19,9 +21,13 @@ function PieSliceShape ( props: PieSectorShapeProps ) {
 }
 
 export default function CategoriesChart () {
-    const { data } = useCategoriesChartQuery();
+    const { data, isLoading, isError, refetch } = useCategoriesChartQuery();
     const chartData = (data ?? []).filter((d:ChartItem) => d.value > 0);
     const setCategory = useFilterStore(state => state.setCategory);
+
+    if ( isLoading ) return <LoadingSpinner height="full" />;
+
+    if ( isError ) return <Refresh onClick={refetch} />;
 
     return (
         <figure 

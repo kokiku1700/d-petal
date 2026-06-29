@@ -3,10 +3,11 @@
 import { useFilterStore } from "@/hooks/useFilterStore";
 import { usePostsQuery } from "@/hooks/usePostsQuery"
 import Post from "./Post";
-import Spinner from "@/components/Spinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Refresh from "@/components/Refresh";
 
 export default function Posts () {
-    const { data, isLoading, isError } = usePostsQuery();
+    const { data, isLoading, isError, refetch } = usePostsQuery();
     // 페이지네이션 현재 넘버
     const page = useFilterStore(state => state.page);
     // 페이지네이션 넘버 변경
@@ -14,21 +15,17 @@ export default function Posts () {
 
     if ( isLoading ) {
         return (
-            <div 
-                className="
-                    w-full
-                    flex flex-col justify-center items-center">
-                <Spinner />
-                <p className="w-full text-center mt-5">
-                    기록을 불러오는 중입니다.
-                </p>
-            </div>
-
+            <LoadingSpinner height="full" text1="기록을 불러오는 중입니다."/>
         )
     };
 
     if ( isError ) {
-        return <p className="w-full text-center mt-5">기록을 불러오지 못했습니댜.</p>
+        return (
+            <div className="w-full h-full flex flex-col justify-center items-center">
+                <p className="text-center mt-5">기록을 불러오지 못했습니댜.</p>
+                <Refresh onClick={refetch} />
+            </div> 
+        );
     };
 
     const posts = data?.posts ?? [];

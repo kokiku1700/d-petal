@@ -1,10 +1,12 @@
 "use client"
 
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Refresh from "@/components/Refresh";
 import { useCategoriesChartQuery } from "@/hooks/useCategoriesChartQuery";
 import { useFilterStore } from "@/hooks/useFilterStore";
 
 export default function Categories () {
-    const { data } = useCategoriesChartQuery();
+    const { data, isLoading, isError, refetch } = useCategoriesChartQuery();
     const { selectedCategory, setCategory } = useFilterStore();
     const totalCategory = data?.reduce((acc, cur) => acc + Number(cur.value), 0) ?? 0;
     const allCategory = {
@@ -12,6 +14,10 @@ export default function Categories () {
         name: "전체",
         color: "#fee1e8",
     };
+
+    if ( isLoading ) return <LoadingSpinner height="full" />;
+
+    if ( isError ) return <Refresh onClick={refetch} />;
 
     return (
         <ul 

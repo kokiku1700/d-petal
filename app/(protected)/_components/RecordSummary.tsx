@@ -2,11 +2,21 @@
 
 import { useTodaySummary } from "@/hooks/useTodaySummary";
 import { EmotionKey, emotionsObj } from "@/constant/emotions";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Refresh from "@/components/Refresh";
 
 export default function RecordSummary () {
-    const { data: summary } = useTodaySummary(); 
+    const { data: summary, isLoading, isError, refetch } = useTodaySummary(); 
 
     if ( !summary ) return null;
+
+    if ( isLoading ) {
+        return <LoadingSpinner height="full" />
+    };
+
+    if ( isError ) {
+        return <Refresh onClick={refetch} />
+    };
 
     const topEmotion = summary?.top_emotion;
     const emoji = topEmotion ? emotionsObj[topEmotion as EmotionKey].emoji : "";

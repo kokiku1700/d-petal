@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import Spinner from "@/components/Spinner";
+import Spinner from "@/components/LoadingSpinner";
 import { signInSchema } from "@/schemas/auth/sign-in.schema";
 
 type Props = {

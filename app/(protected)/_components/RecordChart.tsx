@@ -5,6 +5,8 @@ import type { Tooltip } from "@/types/tooltip";
 import ToolTip from "./ToolTip";
 import { useFilterStore } from "@/hooks/useFilterStore";
 import { useHeatmapQuery } from "@/hooks/useHeatmapQuery";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Refresh from "@/components/Refresh";
 
 type Day = {
     date: string;
@@ -23,9 +25,10 @@ function getColor ( count: number ) {
 };
 
 export default function RecordChart () {
-    const { data } = useHeatmapQuery();
+    const { data, isLoading, isError, refetch } = useHeatmapQuery();
     const [hovered, setHovered] = useState<Tooltip | null>(null);
     const { selectedDate, setDate, setPage, resetFilter } = useFilterStore();
+
 
     const days = useMemo<Day[]>(() => {
         if ( !data?.heatmap ) return [];
@@ -100,6 +103,14 @@ export default function RecordChart () {
             setPage(1);
             setDate(date);
         };
+    };
+
+    if ( isLoading ) {
+        return <LoadingSpinner height="full" />
+    };
+
+    if ( isError ) {
+        return <Refresh onClick={refetch} />
     };
 
     return (
