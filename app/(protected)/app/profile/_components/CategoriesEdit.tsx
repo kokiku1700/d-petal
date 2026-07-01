@@ -13,8 +13,12 @@ export default function CategoriesEdit () {
     const [color, setColor] = useState("#e812d6")
     const queryClient = useQueryClient();
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if ( category.trim() === "" ) {
+            return alert("카테고리를 입력해주세요.");
+        };
 
         const res = await fetch("/api/categories", {
             method: "POST",

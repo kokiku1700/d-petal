@@ -67,7 +67,7 @@ export default function ProfileImageEdit ( { closeEditModal }: Props ) {
                         : <span className="flex justify-center items-center min-h-[150px]">미리보기</span>
                     }
                 </div>
-                <div className="w-full">
+                <div className="w-full text-center">
                     <input 
                         name="file" type="file"
                         accept="image/"

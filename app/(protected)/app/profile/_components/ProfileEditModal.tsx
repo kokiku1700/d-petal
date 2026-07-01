@@ -77,13 +77,13 @@ export default function ProfileEditModal ( { user, closeEditModal }: Props ) {
                                 <span 
                                     className={` 
                                         ${selectedTab === tab.key
-                                            ? "absolute bottom-0 right-0 p-1 w-full bg-pink-300 lg:top-0 lg:h-full"
+                                            ? "absolute bottom-0 right-0 p-1 w-full bg-pink-300 lg:top-0 lg:w-0 lg:h-full"
                                             : null
                                         }`}/>
                             </button>
                         ))}
                     </aside>
-                    <section className="basis-5/7 p-4">
+                    <section className="w-[80%] p-4 lg:basis-4/7 lg:mx-auto ">
                         {selectedTab === "info" && <ProfileInfoEdit user={user} closeEditModal={closeEditModal} />}
                         {selectedTab === "image" && <ProfileImageEdit closeEditModal={closeEditModal} />}
                         {selectedTab === "password" && <PasswordEdit user={user} closeEditModal={closeEditModal} />}
