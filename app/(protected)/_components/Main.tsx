@@ -3,7 +3,6 @@ import Profile from "./Profile";
 import Categories from "./Categories";
 import Posts from "./Posts";
 import CategoriesChart from "./CategoriesChart";
-import CategoriesTop3 from "./CategoriesTop3";
 import SelecedFilter from "./SelectedFilter";
 import TextFilter from "./TextFilter";
 import Record from "./Record";
@@ -88,7 +87,6 @@ export default function Main () {
                         hidden flex flex-col gap-2 basis-2/10
                         xl:flex">
                     <CategoriesChart />
-                    <CategoriesTop3 />   
                 </div>
             </div>
         </main>
