@@ -42,10 +42,10 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
         <section 
             className="
                 relative
-                grid grid-cols-2 justify-around items-center
+                flex flex-col justify-around items-center
                 w-full p-2 rounded-xl bg-white
                 border border-gray-400
-                md:flex">
+                md:flex-row">
             <div 
                 className="
                     relative
@@ -53,11 +53,12 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                     md:w-[15%]">
                 <div 
                     className="
-                        relative w-full
+                        relative w-[70%] mx-auto
                         rounded-full aspect-square
                         border border-black 
                         bg-white
-                        overflow-hidden">
+                        overflow-hidden
+                        lg:w-full">
                     <Image 
                         src={user?.user_profile_image 
                                 ? user.user_profile_image 
@@ -71,18 +72,21 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                     alt="프로필 이미지 수정" 
                     onClick={() => {openEditModal(); setSelectedTab("image");}}
                     className="
-                        w-[30%] p-2
+                        w-[20%] p-2
                         shadow-md rounded-full bg-white
-                        absolute bottom-2 right-2
+                        absolute bottom-[5%] right-[13%]
                         cursor-pointer
                         lg:w-[25%]
-                        xl:w-[20%] xl:bottom-3 xl:right-3"/>
+                        xl:w-[20%]"/>
             </div>
             <div 
                 className="
                     basis-3/5 w-full
                     flex flex-col gap-5">
-                <div className="flex items-end gap-2">
+                <div 
+                    className="
+                        flex flex-col items-center gap-2
+                        lg:flex-row lg:items-end">
                     <span className="text-3xl">
                         {user?.user_nickname}
                     </span>
@@ -92,9 +96,10 @@ export default function MyProfileSummary ( { user, openEditModal }: Props ) {
                 </div>
                 <p 
                     className="
-                        mt-1
+                        mt-1 text-center
                         text-md text-gray-600
-                        line-clamp-2 italic">
+                        line-clamp-2 italic
+                        lg:text-left">
                     {user?.user_bio ? user.user_bio : "나를 설명해보세요"}
                 </p>
             </div>

@@ -114,8 +114,9 @@ export default function ContentModal ({ data, status, setModalStatus, contentMod
                             className="
                                 w-full flex justify-center items-center
                                 rounded-lg bg-gray-200
-
-                                hover:bg-gray-300">
+                                text-sm
+                                hover:bg-gray-300
+                                lg:text-lg">
                             수정하기
                         </Link>
                         <Button object="확인" type="button" variant="submit" onClick={() => setModalStatus(false)}/>
