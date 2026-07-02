@@ -4,6 +4,7 @@ import Image from "next/image";
 import cardMenu from "@/public/cardMenu.png";
 import CardMenu from "./CardMenu";
 import { useEffect, useRef, useState } from "react";
+import ContentModal from "./ContentModal";
 
 type Props = {
     data: Post;
@@ -31,18 +32,19 @@ function darkenColor ( hex: string, amount = 40 ) {
 
 export default function Post ({ data }: Props) {
     // 카드에 메뉴창 토글 상태
-    const [menuToggleState, setMenuToggleState] = useState(false);
+    const [menuToggleStatus, setMenuToggleStatus] = useState(false);
     // 다른 곳 클릭해서 열려있는 메뉴창 닫을 때 사용
     const menuRef = useRef<HTMLDivElement>(null);
+    const [modalStatus, setModalStatus] = useState(false);
 
     const handleMenuToggle = () => {
-        setMenuToggleState(!menuToggleState);
+        setMenuToggleStatus(!menuToggleStatus);
     };
 
     useEffect(() => {
         const handleClickOutSide = (e: MouseEvent) => {
             if ( menuRef.current && !menuRef.current.contains(e.target as Node)) {
-                setMenuToggleState(false);
+                setMenuToggleStatus(false);
             };
         };
 
@@ -53,64 +55,72 @@ export default function Post ({ data }: Props) {
         };
     }, []);
 
+    const handleContentModalToggle = () => {
+        setModalStatus(!modalStatus);
+    };
+
     return (
-        <article 
-            style={{
-                    border: `1px solid ${data.category_color}`, 
-                }}
-            className={`
-                w-full max-w-[500px] p-3
-                flex flex-col gap-3
-                rounded-lg bg-white/80`}>
-            <div className="relative flex gap-1">
-                <span
-                    style={{color: darkenColor(data.category_color)}}
-                    className="font-bold">
-                    {data.category_name}
-                </span>
-                <span className="text-gray-600">{`(${data.activity_date.slice(0, 10)})`}</span>
-                <div ref={menuRef} className="absolute top-0 right-0 cursor-pointer">
-                    <Image 
-                        src={cardMenu} alt="menu" 
-                        onClick={handleMenuToggle}/>
-                    <CardMenu 
-                        postId={data.post_id}
-                        state={menuToggleState} 
-                        onClose={() => setMenuToggleState(false)} />
+        <>
+            <article 
+                onClick={handleContentModalToggle}
+                style={{
+                        border: `1px solid ${data.category_color}`, 
+                    }}
+                className={`
+                    w-full max-w-[500px] p-3
+                    flex flex-col gap-3
+                    rounded-lg bg-white/80`}>
+                <div className="relative flex gap-1">
+                    <span
+                        style={{color: darkenColor(data.category_color)}}
+                        className="font-bold">
+                        {data.category_name}
+                    </span>
+                    <span className="text-gray-600">{`(${data.activity_date.slice(0, 10)})`}</span>
+                    <div ref={menuRef} className="absolute top-0 right-0 cursor-pointer">
+                        <Image 
+                            src={cardMenu} alt="menu" 
+                            onClick={handleMenuToggle}/>
+                        <CardMenu 
+                            postId={data.post_id}
+                            state={menuToggleStatus} 
+                            onClose={() => setMenuToggleStatus(false)} />
+                    </div> 
                 </div> 
-            </div> 
-            <div 
-                className="
-                    flex justify-between items-center px-2
-                    lg:flex-col lg:items-start">
-                <h1 
-                    className={`
-                        text-xl font-bold truncate
-                        ${data.title.trim() === "" ? "text-gray-300" : ""}`}>
-                    {data.title.trim() === "" ? "제목 없음" : data.title}
-                </h1>
                 <div 
                     className="
-                    w-fit px-3 py-1
-                    flex justify-center items-center gap-1 
-                    border border-gray-200 rounded-4xl">
-                    <span>{emotionsObj[data.emotion].emoji}</span>
-                    <span>{emotionsObj[data.emotion].label}</span>
-                </div>
-            </div> 
-            <p 
-                className={`
-                    px-2 truncate
-                    ${data.content.trim() === "" ? "text-gray-300" : ""}`}>
-                {data.content.trim() === "" ? "내용 없음" : data.content}
-            </p>
-            <span 
-                className="
-                    p-1
-                    text-gray-300
-                    border-t border-gray-200">
-                작성일: {data.created_at.slice(0, 10)}
-            </span>
-        </article>
+                        flex justify-between items-center px-2
+                        lg:flex-col lg:items-start">
+                    <h1 
+                        className={`
+                            text-xl font-bold truncate
+                            ${data.title.trim() === "" ? "text-gray-300" : ""}`}>
+                        {data.title.trim() === "" ? "제목 없음" : data.title}
+                    </h1>
+                    <div 
+                        className="
+                        w-fit px-3 py-1
+                        flex justify-center items-center gap-1 
+                        border border-gray-200 rounded-4xl">
+                        <span>{emotionsObj[data.emotion].emoji}</span>
+                        <span>{emotionsObj[data.emotion].label}</span>
+                    </div>
+                </div> 
+                <p 
+                    className={`
+                        px-2 truncate
+                        ${data.content.trim() === "" ? "text-gray-300" : ""}`}>
+                    {data.content.trim() === "" ? "내용 없음" : data.content}
+                </p>
+                <span 
+                    className="
+                        p-1
+                        text-gray-300
+                        border-t border-gray-200">
+                    작성일: {data.created_at.slice(0, 10)}
+                </span>
+            </article>
+            <ContentModal data={data} status={modalStatus} setModalStatus={setModalStatus} contentModalToggle={handleContentModalToggle}/>
+        </> 
     )
 }
