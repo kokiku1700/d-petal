@@ -3,6 +3,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { SessionUser } from "@/lib/getSessionUser";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -17,7 +18,8 @@ export default function ProfileInfoEdit ({ user, closeEditModal }: Props) {
     const [message, setMessage] = useState("");
     const [nicknameState, setNicknameState] = useState(false);
     const router = useRouter();
-    
+    const queryClient = useQueryClient();
+
     const handleNicknameCheck = async () => {
         const res = await fetch(`/api/nickname-check/profile?nickname=${encodeURIComponent(nickname)}&id=${user.user_id}`);
         const data = await res.json();
@@ -46,6 +48,7 @@ export default function ProfileInfoEdit ({ user, closeEditModal }: Props) {
         });
 
         if ( res.ok ) {
+            queryClient.invalidateQueries({ queryKey: ["me"]});
             closeEditModal();
             router.refresh();         
         };

@@ -77,7 +77,7 @@ export default function Profile () {
                 </div>
             </div>
             <div 
-                className="text-center p-2 truncate">
+                className="text-center p-2 max-h-[60px] overflow-hidden">
                 <p className="italic">{me.user.user_bio ? me.user.user_bio : "나를 표현해보세요."}</p>
             </div>   
         </aside>

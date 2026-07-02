@@ -52,7 +52,7 @@ export default function Posts () {
             )}
             
             {pagination && pagination.totalPages > 0 && (
-                <div className="absolute bottom-1 left-1 w-full flex gap-2 items-center m-2">
+                <div className="w-full flex gap-2 items-center m-5">
                     <button
                         type="button"
                         disabled={page === 1}
