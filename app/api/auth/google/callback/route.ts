@@ -34,6 +34,9 @@ export async function GET ( req: Request ) {
     const redirectUri = process.env.GOOGLE_REDIRECT_URI;
 
     if ( !clientId || !clientSecret || !redirectUri ) {
+        console.log(!!clientId)
+        console.log(!!clientSecret)
+        console.log(!!redirectUri)
         return Response.json(
             { ok: false, message: "Google OAuth 환경변수가 없습니다."},
             { status: 500 },
