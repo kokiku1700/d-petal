@@ -37,7 +37,8 @@ export default function Post ({ data }: Props) {
     const menuRef = useRef<HTMLDivElement>(null);
     const [modalStatus, setModalStatus] = useState(false);
 
-    const handleMenuToggle = () => {
+    const handleMenuToggle = (e:React.MouseEvent<HTMLImageElement>) => {
+        e.stopPropagation();
         setMenuToggleStatus(!menuToggleStatus);
     };
 
@@ -77,7 +78,11 @@ export default function Post ({ data }: Props) {
                         {data.category_name}
                     </span>
                     <span className="text-gray-600">{`(${data.activity_date.slice(0, 10)})`}</span>
-                    <div ref={menuRef} className="absolute top-0 right-0 cursor-pointer">
+                    <div 
+                        ref={menuRef} 
+                        className="
+                            absolute top-0 right-0 
+                            p-2 cursor-pointer">
                         <Image 
                             src={cardMenu} alt="menu" 
                             onClick={handleMenuToggle}/>

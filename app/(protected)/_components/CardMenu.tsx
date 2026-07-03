@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import React from "react";
 
 type Props = {
     postId: number;
@@ -34,7 +35,10 @@ export default function CardMenu ({ postId, state, onClose }: Props) {
                 rounded-lg shadow-sm
                 bg-white`}>
             <li 
-                onClick={onClose}
+                onClick={(e:React.MouseEvent<HTMLLIElement>) => {
+                    e.stopPropagation();
+                    onClose();
+                }}
                 className="
                     p-1 rounded-lg 
                     cursor-pointer
@@ -44,7 +48,10 @@ export default function CardMenu ({ postId, state, onClose }: Props) {
                 </Link>
             </li>
             <li 
-                onClick={() => {onClose(); handleDelete()}}
+                onClick={(e:React.MouseEvent<HTMLLIElement>) => {
+                    e.stopPropagation();
+                    onClose(); 
+                    handleDelete()}}
                 className="
                     p-1 rounded-lg 
                     cursor-pointer
