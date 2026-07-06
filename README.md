@@ -316,6 +316,16 @@ GITHUB_REDIRECT_URI=
 
 RESEND_API_KEY=
 ```
+## 테스트
+- Vitest
+- React Testing Library
+
+### 테스트한 내용
+- 로딩 및 에러 UI
+- 새로고침 버튼 동작
+- React Query Refetch 호출 여부
+- 주요 컴포넌트 렌더링
+
 
 ## 회고
 d.petal은 단순히 기능 구현에만 집중한 프로젝트가 아니라 실제 서비스를 운영한다는 가정으로 진행한 프로젝트다.
