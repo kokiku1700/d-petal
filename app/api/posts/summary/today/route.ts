@@ -17,8 +17,8 @@ export async function GET ( req: Request ) {
             select * 
             from posts
             where user_id = ${user.user_id}
-                and date(created_at at time zone 'Asia/Seoul')
-                    = date(now() at time zone 'Asia/Seoul')
+                and activity_date =
+                    (now() at time zone 'Asia/Seoul')::date
         ),
         top_emotion as (
             select emotion
@@ -33,6 +33,6 @@ export async function GET ( req: Request ) {
             (select emotion from top_emotion) as top_emotion
         from today_posts;
     `;
-
+    console.log(rows[0])
     return Response.json(rows[0]);
 }

@@ -62,8 +62,8 @@ export async function getTodaySummaryDetail ( id: number ) {
             select * 
             from posts
             where user_id = ${id}
-                and date(created_at at time zone 'Asia/Seoul')
-                    = date(now() at time zone 'Asia/Seoul')
+                and activity_date =
+                    (now() at time zone 'Asia/Seoul')::date
         ),
         top_emotion as (
             select emotion

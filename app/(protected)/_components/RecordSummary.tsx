@@ -38,7 +38,7 @@ export default function RecordSummary () {
             sub: "오늘의 기분"
         }
     ];
-
+    console.log(cards)
     return (
         <section className="w-full p-4 rounded-lg">
             {/* 기록 요약 아이콘 및 제목 */}
