@@ -75,6 +75,7 @@ export async function GET ( req: Request ) {
     };
 
     const provider = "kakao";
+    console.log(email)
 
     const existingUser = await sql`
         select * 
