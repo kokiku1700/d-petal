@@ -23,6 +23,7 @@ type KakaoUserResponse = {
 };
 
 export async function GET ( req: Request ) {
+    console.log(req)
     const url = new URL(req.url);
     const code = url.searchParams.get("code");
 
