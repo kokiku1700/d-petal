@@ -85,7 +85,7 @@ export async function GET ( req: Request ) {
     `;
 
     let user = existingUser[0];
-    
+    console.log(user)
     if ( !user ) {
         const insertedUser = await sql`
             insert into users (
